@@ -1,23 +1,16 @@
-// ------------------------------var
+// ------------------------------primitivos
 
-// var a = 'Hola mundo';
-// console.log(a);
+// const PERRITO = 'Losbeint';
+// console.log(PERRITO);
 
-// if (true) {
-// 	var a = 3
-// 	console.log(a);
-// }
+// PERRITO = 'Jaime'
 
-// console.log(a);
+// console.log(PERRITO);
 
-// ------------------------------let
+// ------------------------------compuestos
 
-let a = 'Hola mundo';
-console.log(a);
+const COLORES= ['Amarillo', 'Azul'];
+console.log('Colores: ', COLORES);
 
-if (true) {
-	let a = 3
-	console.log(a);
-}
-
-console.log(a);
+COLORES.push('Rojo')
+console.log('Colores: ', COLORES);
