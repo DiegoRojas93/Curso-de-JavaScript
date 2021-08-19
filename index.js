@@ -1,32 +1,57 @@
-const a = new Array('item_1', 'item_2', 'item_3');
+let objeto = new Object()
 
-const c = Array.of('x', 'y', 'z', 9, 8, 7);
-const b = [true,'hola', ['A', 'B', 'C',[1,2,3]]];
+console.log(objeto);
 
-console.log(b[1]);
-console.log(b[2][2]);
-console.log(b[2][3][2]);
-// console.log(a);
-// console.log(b);
+objeto.llave1 = 'valor_1';
+objeto.llave2 = 'valor_2';
 
-//metodos
+console.log(objeto);
 
-const d = Array(100).fill(null)
-const e = new Array()
-const f = new Array(1, 2, 3, true, false)
+// dentro de un objeto a las variables se le llaman atributos
+// dentro de un objeto a la funciones se le van a llamar metodos
+// this hace referencia al mismo objeto
 
-console.log(c);
-console.log(d);
-console.log(e);
-console.log(f);
+const json = {
+	nombre: 'Diego',
+	apelliido: 'Rojas',
+	edad: 27,
+	soltero: true,
+	pasatiempos: ['caminar', 'cine', 'anime'],
+	contacto: {
+		email: 'email@gmail.com',
+		cel: 018000555555,
+		twitter: '@DiegoFrontend',
+		segir: function(){
+			console.log(`Me puedes segir en ${this.twitter}`);
+		}
+	},
+	saludar: function(){
+		console.log('Hola mundo!')
+	},
+	decirMiNombre: function(){
+		console.log(`Hola me llamo ${this.nombre} ${this.apellido} y tengo ${this.edad} años`);
+	}
+}
 
-const colores = ['Amarillo', 'Azul', 'Rojo']
-console.log(colores);
+console.log(json);
 
-colores.push('Negro') // Agrega un nuevo item al final del array
-console.log(colores);
+console.log(json['nombre']);
+console.log(json.apelliido);
+console.log(json.soltero);
 
-colores.pop() // Elimina el ultimo item de un array
-console.log(colores);
+console.log(json.pasatiempos);			// podemos acceder a un array completo
+console.log(json.pasatiempos[2]);		// podemos acceder a un dato de array
+console.log(json.contacto.email);		// podemos acceder a una objeto
 
-colores.forEach((item, index) => console.log(`<li id='${index}'>${item}</li>`));
+json.saludar();
+json.decirMiNombre();
+json.contacto.segir()
+
+
+//-------------Metodos
+
+console.log(Object.keys(json));			// retorna un array de las key del objeto
+console.log(Object.values(json));			// retorna un array de los valores delobjeto
+
+console.log(json.hasOwnProperty('nombre'));  // valida si el key existe
+console.log(json.hasOwnProperty('nacimiento'));
