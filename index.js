@@ -1,52 +1,32 @@
-// Funcion Declarada
+const a = new Array('item_1', 'item_2', 'item_3');
 
-function estoEsUnaFuncion(){
-	console.log('uno');
-	console.log('dos');
-	console.log('tres');
-}
+const c = Array.of('x', 'y', 'z', 9, 8, 7);
+const b = [true,'hola', ['A', 'B', 'C',[1,2,3]]];
 
-// invocacion de funcion
+console.log(b[1]);
+console.log(b[2][2]);
+console.log(b[2][3][2]);
+// console.log(a);
+// console.log(b);
 
-estoEsUnaFuncion();
+//metodos
 
-// retorno de valores
+const d = Array(100).fill(null)
+const e = new Array()
+const f = new Array(1, 2, 3, true, false)
 
-function unaFuncionQueDevuelveUnValor(){
-	return 'La funcion ha retornado una cadena de texto'
-}
+console.log(c);
+console.log(d);
+console.log(e);
+console.log(f);
 
-let str = unaFuncionQueDevuelveUnValor()
+const colores = ['Amarillo', 'Azul', 'Rojo']
+console.log(colores);
 
-console.log(str);
+colores.push('Negro') // Agrega un nuevo item al final del array
+console.log(colores);
 
-// parametros
+colores.pop() // Elimina el ultimo item de un array
+console.log(colores);
 
-function saludar ( nombre = 'Diego', edad = 27 ){
-	console.log(`Hola mmi nombre es ${nombre} y tengo ${edad} años`);
-}
-
-saludar()
-saludar('Maria', 61);
-
-// funciones declarativa
-
-funcionDeclarada();
-
-function funcionDeclarada(){
-	console.log(`Esto es una función declarada, puede invocarse en cualquer parte de nuestro código, incluso antes de que la funcion sea declarada`);
-};
-
-console.log('');
-
-funcionDeclarada();
-
-// funcion anónima
-
-// funcionAnonima()
-
-const funcionAnonima = function (){
-	console.log('Esto es una funcion expresada, es decir que es una funcion que se le ha asignado como un valor a una variable, si invocamos esta funcion antes de su definicion, JavaScript nos dirá Cannot access "funcionExpresada" before initialization');
-};
-
-funcionAnonima();
+colores.forEach((item, index) => console.log(`<li id='${index}'>${item}</li>`));
