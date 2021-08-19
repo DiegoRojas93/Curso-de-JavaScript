@@ -1,40 +1,17 @@
-let verdadero = true;
-let falso = false;
+// undefined
 
-let v = Boolean(true);
-let f = Boolean(false)
+let indefinida;
 
-console.log(verdadero, falso);
-console.log(typeof verdadero, typeof falso);
+console.log('indefinida: ', indefinida);
 
-console.log(v, f);
+// null
 
-function comprovacion (truthy, falsy) {
-	this.truthy = truthy;
-	this.falsy = falsy;
-}
+let nulo = null;
 
-let boolean = {};
+console.log('null: ', nulo);
 
-boolean.booleanoTrue = new comprovacion (true, );
-boolean.objeto = new comprovacion ('{}', );
-boolean.array = new comprovacion ('[]', );
-boolean.number = new comprovacion (45,);
-boolean.string = new comprovacion ('string', );
-boolean.date = new comprovacion (new Date(), );
-boolean.numberNegative = new comprovacion (-42, );
-boolean.float = new comprovacion (3.14, );
-boolean.floatNegative = new comprovacion (-3.14, );
-boolean.infinite = new comprovacion (Infinity, )
-boolean.infiniteNegative =  new comprovacion (-Infinity, );
+// NaN - Not a Number
 
-boolean.booleanoFalse =  new comprovacion (undefined, false);
-boolean.stringVacio =  new comprovacion (undefined, '');
-boolean.numberZero = new comprovacion (undefined, 0);
-boolean.numberZeroNegative = new comprovacion (undefined, -0);
-boolean.bigInt = new comprovacion (undefined, 0n);
-boolean.null = new comprovacion (undefined, null);
-boolean.undefined = new comprovacion (undefined, undefined);
-boolean.nan = new comprovacion (undefined, NaN);
+let noEsUnNumero = 'hola' * 3.7;
 
-console.table(boolean);
+console.log('No es un número: ', noEsUnNumero);
