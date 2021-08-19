@@ -1,57 +1,83 @@
-let objeto = new Object()
+/* Operadores Arimeticos */
 
-console.log(objeto);
+let suma = 5 + 2;
+let resta = 5 - 2;
+let multiplicacion = 5 * 2;
+let division = 5 / 2;
+let modulo = 5 % 2;  // residuo de la divicion de 5 / 2
+let exponenciacion = 5 ** 2;
 
-objeto.llave1 = 'valor_1';
-objeto.llave2 = 'valor_2';
+console.log(exponenciacion);
 
-console.log(objeto);
+/* Operadores relacionales >, <, >=, <=, ==, ===, !=, !== */
 
-// dentro de un objeto a las variables se le llaman atributos
-// dentro de un objeto a la funciones se le van a llamar metodos
-// this hace referencia al mismo objeto
+console.log(8 > 9);		// false
+console.log(8 < 9);		// true
+console.log(8 >= 9);	// false
+console.log(8 <= 9);	// true
+console.log(7 < 7);		// false
+console.log(7 <= 7);	// true
 
-const json = {
-	nombre: 'Diego',
-	apelliido: 'Rojas',
-	edad: 27,
-	soltero: true,
-	pasatiempos: ['caminar', 'cine', 'anime'],
-	contacto: {
-		email: 'email@gmail.com',
-		cel: 018000555555,
-		twitter: '@DiegoFrontend',
-		segir: function(){
-			console.log(`Me puedes segir en ${this.twitter}`);
-		}
-	},
-	saludar: function(){
-		console.log('Hola mundo!')
-	},
-	decirMiNombre: function(){
-		console.log(`Hola me llamo ${this.nombre} ${this.apellido} y tengo ${this.edad} años`);
-	}
-}
+	/*
+	= Un igual es asignacion
+	== dos iguales es la compacion de valores
+	=== 3 iguales es la comparacion de tipo de dato y de valor
+	*/
 
-console.log(json);
+	console.log(7 == 7);		// true
+	console.log(7 == '7');	// true
+	console.log(1 == true);	// true
+	console.log(0 == false);	// true
+	console.log(7 == true);	// false
 
-console.log(json['nombre']);
-console.log(json.apelliido);
-console.log(json.soltero);
+	console.log(7 === 7);		// true
+	console.log(7 === '7');	// false
+	console.log(7 === true);	// false
 
-console.log(json.pasatiempos);			// podemos acceder a un array completo
-console.log(json.pasatiempos[2]);		// podemos acceder a un dato de array
-console.log(json.contacto.email);		// podemos acceder a una objeto
+// Operadores de Incremento y decremento
 
-json.saludar();
-json.decirMiNombre();
-json.contacto.segir()
+	// incremento
 
+	let i = 1;
+	let i2 = 1;
 
-//-------------Metodos
+	// i = i + 2;
+	i += 2;
+	i2 *= 2;
 
-console.log(Object.keys(json));			// retorna un array de las key del objeto
-console.log(Object.values(json));			// retorna un array de los valores delobjeto
+	console.log(i, i2); // 3, 2
 
-console.log(json.hasOwnProperty('nombre'));  // valida si el key existe
-console.log(json.hasOwnProperty('nacimiento'));
+	// decremento
+
+	let i3 = 2;
+	let i4 = 2;
+
+	// i = i + 2;
+	i3 -= 1;
+	i4 /= 2;
+
+	console.log(i3, i4); // 1, 1
+
+	// operador unario
+
+	let i5 = 2
+	let i6 = 2
+
+	i5++;
+	i6--;
+
+	console.log(i5, i6);  // 3, 1
+	console.log(i5++, i6--);  // 3, 1
+	console.log(i5, i6);  // 4, 0
+
+/* Operadores Logicos
+! = Not = negadora,
+|| = or = sumadora,
+&& = and = multiplicadora
+*/
+
+console.log(!true);  // false
+console.log(!false); // true
+
+console.log((9 === 9)||('9' === 9)); // true
+console.log((9 === 9)&&('9' === 9)); // false
