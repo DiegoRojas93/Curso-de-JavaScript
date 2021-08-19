@@ -1,24 +1,40 @@
-let a = 1;
-let b = new Number(2);
-let c = 7.19;
-let d = '5.6';
+let verdadero = true;
+let falso = false;
 
-console.log('numeros: ', a, b, c)
+let v = Boolean(true);
+let f = Boolean(false)
 
-// metodos
+console.log(verdadero, falso);
+console.log(typeof verdadero, typeof falso);
 
-console.log(c.toFixed(1)); // va ha redondear el numero hasta la cantidad de numeros que decimales que queramos que tenga = 1
-console.log(c.toFixed(5));
+console.log(v, f);
 
-console.log(parseInt(c)); // devuelve la parte entera = 7
+function comprovacion (truthy, falsy) {
+	this.truthy = truthy;
+	this.falsy = falsy;
+}
 
-console.log(parseFloat(c)); // devuelve la parte flotante
+let boolean = {};
 
-console.log(a+b);
+boolean.booleanoTrue = new comprovacion (true, );
+boolean.objeto = new comprovacion ('{}', );
+boolean.array = new comprovacion ('[]', );
+boolean.number = new comprovacion (45,);
+boolean.string = new comprovacion ('string', );
+boolean.date = new comprovacion (new Date(), );
+boolean.numberNegative = new comprovacion (-42, );
+boolean.float = new comprovacion (3.14, );
+boolean.floatNegative = new comprovacion (-3.14, );
+boolean.infinite = new comprovacion (Infinity, )
+boolean.infiniteNegative =  new comprovacion (-Infinity, );
 
-console.log(typeof c, typeof d);
-console.log(c + d);         // Concatena un número y el string
-console.log(c + parseInt(d));
-console.log(c + parseFloat(d));
+boolean.booleanoFalse =  new comprovacion (undefined, false);
+boolean.stringVacio =  new comprovacion (undefined, '');
+boolean.numberZero = new comprovacion (undefined, 0);
+boolean.numberZeroNegative = new comprovacion (undefined, -0);
+boolean.bigInt = new comprovacion (undefined, 0n);
+boolean.null = new comprovacion (undefined, null);
+boolean.undefined = new comprovacion (undefined, undefined);
+boolean.nan = new comprovacion (undefined, NaN);
 
-console.log(c + Number.parseFloat(d)); // constructor.parseFloat(d)
+console.table(boolean);
