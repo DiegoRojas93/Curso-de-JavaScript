@@ -1,34 +1,32 @@
-/*------------------------Objetos literales-----------------------*/
+/*------------- parametros REST & operador Spread---------------*/
 
-let nombre = 'Diego'
-		edad = 27
+// parametros REST
 
-// Antes de ECS 6
+function sumar (a,b, ...c) {
+	let resultado = a + b;
 
-// const persona = {
-// 	nombre: nombre,
-// 	edad: edad,
-// 	saludar: function (){
-// 		console.log('Hello world!')
-// 	}
-// }
+	c.forEach(function(n){
+		resultado += n
+	});
 
-// console.log(persona);
-
-// persona.saludar();
-
-
-// Despues de ECS 6
-
-const persona = {
-	nombre,
-	edad,
-	estadoCivil: 'soltero',
-	saludar () {
-		console.log('Hello world!')
-	}
+	return resultado;
 }
 
-console.log(persona);
+console.log(sumar(1, 2,));
+console.log(sumar(1, 2, 3));
+console.log(sumar(1, 2, 3, 4));
+console.log(sumar(1, 2, 3, 4, 5));
+console.log(sumar(1, 2, 3, 4, 5, 6));
+console.log(sumar(1, 2, 3, 4, 5, 6, 7));
+console.log('');
 
-persona.saludar()
+// operador Spread
+
+const array = [1, 2, 3, 4, 5];
+			array2 = [6, 7, 8, 9, 10];
+
+console.log(array, array2);
+
+const array3 = [...array, ...array2]
+
+console.log(array3);
