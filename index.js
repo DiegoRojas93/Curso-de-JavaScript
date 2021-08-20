@@ -1,32 +1,61 @@
-/*------------- parametros REST & operador Spread---------------*/
+/*------------- Arrow functions ---------------*/
 
-// parametros REST
+// funcion anonima traducional
 
-function sumar (a,b, ...c) {
-	let resultado = a + b;
+	// const saludo = function (nombre) {
+	// 	console.log(`Hola ${nombre}`);
+	// }
 
-	c.forEach(function(n){
-		resultado += n
-	});
+	// saludo('maria');
 
-	return resultado;
+// Arrow Functions
+
+	// const saludo = nombre => console.log(`Hola ${nombre}`);
+
+	// saludo('maria');
+
+// Las arrow function tiene un return implicito
+
+const sumar = function (a, b){
+	return a + b
 }
 
-console.log(sumar(1, 2,));
-console.log(sumar(1, 2, 3));
-console.log(sumar(1, 2, 3, 4));
-console.log(sumar(1, 2, 3, 4, 5));
-console.log(sumar(1, 2, 3, 4, 5, 6));
-console.log(sumar(1, 2, 3, 4, 5, 6, 7));
-console.log('');
+const sumar2 = (a, b) => a + b
 
-// operador Spread
+console.log(sumar(2, 3));
+console.log(sumar2(3, 3));
 
-const array = [1, 2, 3, 4, 5];
-			array2 = [6, 7, 8, 9, 10];
+// metodos de los arreglos
 
-console.log(array, array2);
+const numeros = [1, 2, 3, 4, 5]
 
-const array3 = [...array, ...array2]
+numeros.forEach((numero, index) => {console.log(`El numero ${numero} esta en la posicion ${index}`)})
 
-console.log(array3);
+
+// las arrow funcion pueden capturar el objeto this del contexto en el que se encuentre, pero si usamos una arrow function como metodo de un objeto, siempre capturara el this del contexto en el que se encuentra dicho objeto, osea en el window
+
+function hasmter() {
+	console.log(this);
+	console.log('');
+}
+
+hasmter()
+
+const gato = {
+	nombre: 'Garfield',
+	maullar: function () {
+		console.log(this);
+		console.log('');
+	}
+}
+
+gato.maullar()
+
+const perro = {
+	nombre: 'Kenai',
+	ladrar1: () => { console.log('Ladrando 1:', this) },
+	ladrar2() { console.log('Ladrando 2:', this) }
+}
+
+perro.ladrar1();
+perro.ladrar2();
