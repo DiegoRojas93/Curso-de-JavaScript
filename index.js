@@ -1,74 +1,51 @@
-// if-else
+/*-----------------------CICLOS Y BUCLES-----------------------*/
 
-let edad = 17;
+// While: mientras que cumplas cierta condicion, ejecuta este codigo
 
-if(edad > 17) {
-	console.log('Eres mayor de edad');
-}else{
-	console.log('Eres menor de edad');
+let contador = 0;
+
+while(contador <= 10){                  // mientras que cumplas esta condicion, ejecuta este codigo
+	console.log('While: ', contador);
+	contador++;
 }
 
-// if-else if-else
+// Do While: Ejecutar el bucle de codigo mientras que la condicion sea falsa
 
-let hora = 20;
+let contador2 = 0;
 
-if(hora >= 0 && hora <= 5 ) {
-	console.log('Dejame dormir');
-}else if(hora >= 6 && hora <= 11){
-	console.log('Buenos dias');
-}else if(hora >= 12 && hora <= 18){
-	console.log('Buenas tardes');
-}else{
-	console.log('Buenas noches');
+do{                                      // ejecuta por lo menos este codigo una sola vez
+	console.log('Do While: ', contador2);
+	contador2++
+}while(contador2 < 10)                   // ejecuta el codigo hasta que sea falsa esta codicion
+
+
+// For
+
+// for (inicializacionDeLaVariable; codicion; decremento ó incremento) { Secuencias que ejecuta el For }
+
+let numeros= [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+for(let i = 0; i < numeros.length; i++){
+	console.log(numeros[i]);
 }
 
-// Operador ternario ( condicion ) ? verdadero : falso
 
-console.log(`Operador ternario`);
+	// forIn: loop que permite recorrer las propiedades de un objeto
 
-let edad2 = 27;
+		const JSON = {
+			nombre: 'Diego',
+			apellido: 'Rojas',
+			edad: 27
+		}
 
-let eresMayor = (edad2 >= 18)
-	? `Eres mayor`
-	: `Eres menor`;
+		for (const propiedad in JSON) {
+			console.log(`Propiedad: ${propiedad}, Value: ${JSON[propiedad]}`);
+		}
 
-console.log(eresMayor);
+	// forOf: loop que permite recorrer todos los elementos de cualquier objeto que sea iterable (string, array, objetos)
 
+		let cadena = `Hola mundo!`
 
-// Switch - case
-
-let dia = null;
-
-setInterval(() => {
-
-	dia = Math.round(Math.random() * 8 - 1)
-
-	switch (dia) {
-		case 1:
-			console.log(`Lunes`);
-			break;
-		case 2:
-			console.log(`Martes`);
-			break;
-		case 3:
-			console.log(`Miercoles`);
-			break;
-		case 4:
-			console.log(`Jueves`);
-			break;
-		case 5:
-			console.log(`Viernes`);
-			break;
-		case 6:
-			console.log(`Sabado`);
-			break;
-		case 7:
-			console.log(`Domingo`);
-			break;
-
-		default:
-			console.log(`El día no existe`);
-			break;
-	}
-
-},1000);
+		for (const caracter of cadena) {
+			console.log(caracter);
+		}
