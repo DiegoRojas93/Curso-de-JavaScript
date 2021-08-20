@@ -1,83 +1,74 @@
-/* Operadores Arimeticos */
+// if-else
 
-let suma = 5 + 2;
-let resta = 5 - 2;
-let multiplicacion = 5 * 2;
-let division = 5 / 2;
-let modulo = 5 % 2;  // residuo de la divicion de 5 / 2
-let exponenciacion = 5 ** 2;
+let edad = 17;
 
-console.log(exponenciacion);
+if(edad > 17) {
+	console.log('Eres mayor de edad');
+}else{
+	console.log('Eres menor de edad');
+}
 
-/* Operadores relacionales >, <, >=, <=, ==, ===, !=, !== */
+// if-else if-else
 
-console.log(8 > 9);		// false
-console.log(8 < 9);		// true
-console.log(8 >= 9);	// false
-console.log(8 <= 9);	// true
-console.log(7 < 7);		// false
-console.log(7 <= 7);	// true
+let hora = 20;
 
-	/*
-	= Un igual es asignacion
-	== dos iguales es la compacion de valores
-	=== 3 iguales es la comparacion de tipo de dato y de valor
-	*/
+if(hora >= 0 && hora <= 5 ) {
+	console.log('Dejame dormir');
+}else if(hora >= 6 && hora <= 11){
+	console.log('Buenos dias');
+}else if(hora >= 12 && hora <= 18){
+	console.log('Buenas tardes');
+}else{
+	console.log('Buenas noches');
+}
 
-	console.log(7 == 7);		// true
-	console.log(7 == '7');	// true
-	console.log(1 == true);	// true
-	console.log(0 == false);	// true
-	console.log(7 == true);	// false
+// Operador ternario ( condicion ) ? verdadero : falso
 
-	console.log(7 === 7);		// true
-	console.log(7 === '7');	// false
-	console.log(7 === true);	// false
+console.log(`Operador ternario`);
 
-// Operadores de Incremento y decremento
+let edad2 = 27;
 
-	// incremento
+let eresMayor = (edad2 >= 18)
+	? `Eres mayor`
+	: `Eres menor`;
 
-	let i = 1;
-	let i2 = 1;
+console.log(eresMayor);
 
-	// i = i + 2;
-	i += 2;
-	i2 *= 2;
 
-	console.log(i, i2); // 3, 2
+// Switch - case
 
-	// decremento
+let dia = null;
 
-	let i3 = 2;
-	let i4 = 2;
+setInterval(() => {
 
-	// i = i + 2;
-	i3 -= 1;
-	i4 /= 2;
+	dia = Math.round(Math.random() * 8 - 1)
 
-	console.log(i3, i4); // 1, 1
+	switch (dia) {
+		case 1:
+			console.log(`Lunes`);
+			break;
+		case 2:
+			console.log(`Martes`);
+			break;
+		case 3:
+			console.log(`Miercoles`);
+			break;
+		case 4:
+			console.log(`Jueves`);
+			break;
+		case 5:
+			console.log(`Viernes`);
+			break;
+		case 6:
+			console.log(`Sabado`);
+			break;
+		case 7:
+			console.log(`Domingo`);
+			break;
 
-	// operador unario
+		default:
+			console.log(`El día no existe`);
+			break;
+	}
 
-	let i5 = 2
-	let i6 = 2
-
-	i5++;
-	i6--;
-
-	console.log(i5, i6);  // 3, 1
-	console.log(i5++, i6--);  // 3, 1
-	console.log(i5, i6);  // 4, 0
-
-/* Operadores Logicos
-! = Not = negadora,
-|| = or = sumadora,
-&& = and = multiplicadora
-*/
-
-console.log(!true);  // false
-console.log(!false); // true
-
-console.log((9 === 9)||('9' === 9)); // true
-console.log((9 === 9)&&('9' === 9)); // false
+},1000);
