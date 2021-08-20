@@ -1,27 +1,35 @@
-/*-----------------------Break & continue----------------------*/
+/*-----------------------Destructuración----------------------*/
 
-const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+const numeros = [1, 2, 3];
 
-// break
-
-for (let i = 0; i < numeros.length; i++) {
-	if (i === 5) {
-			break																		//se sale de la estructura de control en la que se encuentre
-		}
-
-		console.log(numeros[i]);
-	}
-
-	console.log('');
-
-
-// continue
-
-for (let i = 0; i < numeros.length; i++) {
-	if (i === 5) {
-		console.log('');
-		continue                                // salta de la iteracion en la que se encuentra y vuelve y la retoma
-	}
-
-	console.log(numeros[i]);
+const persona = {
+	nombre: "Diego",
+	apellido: "Rojas",
+	edad: 27
 }
+
+// Sin destructuracion
+
+
+// const uno = numeros[0]
+// 			dos = numeros[1]
+// 			tres = numeros[2]
+
+// const nombre = persona.nombre
+// 			apellido = persona.apellido
+// 			edad = persona.edad
+
+// console.log(uno, dos, tres);
+// console.log('');
+// console.log('Persona: ', nombre, apellido, edad);
+
+
+// Con destructuracion
+
+const [uno, dos, tres] = numeros
+
+let { nombre, apellido, edad } = persona
+
+console.log(uno, dos, tres);
+console.log('');
+console.log('Persona: ', nombre, apellido, edad);
