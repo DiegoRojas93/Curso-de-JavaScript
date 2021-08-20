@@ -1,35 +1,34 @@
-/*-----------------------Destructuración----------------------*/
+/*------------------------Objetos literales-----------------------*/
 
-const numeros = [1, 2, 3];
+let nombre = 'Diego'
+		edad = 27
+
+// Antes de ECS 6
+
+// const persona = {
+// 	nombre: nombre,
+// 	edad: edad,
+// 	saludar: function (){
+// 		console.log('Hello world!')
+// 	}
+// }
+
+// console.log(persona);
+
+// persona.saludar();
+
+
+// Despues de ECS 6
 
 const persona = {
-	nombre: "Diego",
-	apellido: "Rojas",
-	edad: 27
+	nombre,
+	edad,
+	estadoCivil: 'soltero',
+	saludar () {
+		console.log('Hello world!')
+	}
 }
 
-// Sin destructuracion
+console.log(persona);
 
-
-// const uno = numeros[0]
-// 			dos = numeros[1]
-// 			tres = numeros[2]
-
-// const nombre = persona.nombre
-// 			apellido = persona.apellido
-// 			edad = persona.edad
-
-// console.log(uno, dos, tres);
-// console.log('');
-// console.log('Persona: ', nombre, apellido, edad);
-
-
-// Con destructuracion
-
-const [uno, dos, tres] = numeros
-
-let { nombre, apellido, edad } = persona
-
-console.log(uno, dos, tres);
-console.log('');
-console.log('Persona: ', nombre, apellido, edad);
+persona.saludar()
