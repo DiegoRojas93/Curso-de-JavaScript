@@ -1,32 +1,27 @@
-/*-----------------------Manejo de Errores----------------------*/
+/*-----------------------Break & continue----------------------*/
 
-try {
+const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
-	console.log('En el Try se agrega el codigo a evaluar');
-	noExiste
-	console.log('segundo mensaje en el try');
+// break
 
-} catch (error) {
+for (let i = 0; i < numeros.length; i++) {
+	if (i === 5) {
+			break																		//se sale de la estructura de control en la que se encuentre
+		}
 
-	console.log('En el catch, captura cualquier error surgido o lanzado en el try');
-	console.log(error);
-
-} finally {
-
-	console.log('El bloque finally se ejecutara siempre al final de un try-catch');
-
-}
-
-// personalizar nuestros errores
-
-try {
-	let numero = `No`
-
-	if(isNaN(numero)){
-		throw new Error('El caracter introducido no es un número')
+		console.log(numeros[i]);
 	}
 
-	console.log(numero * numero);
-} catch (error) {
-	console.log(`se produjo el sigiente error ${error}`);
+	console.log('');
+
+
+// continue
+
+for (let i = 0; i < numeros.length; i++) {
+	if (i === 5) {
+		console.log('');
+		continue                                // salta de la iteracion en la que se encuentra y vuelve y la retoma
+	}
+
+	console.log(numeros[i]);
 }
