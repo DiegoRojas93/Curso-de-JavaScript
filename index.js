@@ -1,38 +1,39 @@
-/*-- PROGRAMACION ORIENTADA A OBJETOS: Herencia prototiparia --*/
+/*-- PROGRAMACION ORIENTADA A OBJETOS: Clases y Herencia --*/
 
-// funcion prototiparia padre
+// class === funcion prototiparia padre
 
-function Animal (nombre, genero){
-	this.nombre = nombre;
-	this.genero =  genero
+class Animal{
+
+	constructor(nombre, genero){
+		this.nombre = nombre;
+		this.genero =  genero
+	}
+
+	// Metodos
+
+	saludar() {
+		console.log(`Hola soy ${this.nombre}`);
+	}
 }
 
-Animal.prototype.saludar = function () {
-	console.log(`Hola soy ${this.nombre}`);
-}
+// Herencia
 
-// funcion prototiparia hijo
+class Perro extends Animal{
+	constructor(nombre, genero, tamaño){
+		super(nombre, genero) //super es un método que manda llamar el constructor del la clase padre
 
-function Perro(nombre, genero, tamaño){
+		this.tamaño = tamaño;
+	}
 
-	this.super = Animal  // Llamamos al constructor del prototipo perro y va hacer igual al constructor del prototipo Animal
-	this.super(nombre, genero)
-	this.tamaño = tamaño
-}
+	// sobreescritura metodos
 
-//Perro esta heredando de animal
+	saludar(){
+		console.log(`Hola soy ${this.nombre} y soy un perro`);
+	}
 
-Perro.prototype = new Animal()
-Perro.prototype.constructor = Perro
-
-//sobre escritura de metodos del prototipo padre
-
-Perro.prototype.saludar = function () {
-	console.log(`soy un Perro y mi saludo es un ladrido`);
-}
-
-Perro.prototype.ladrido = function () {
-	console.log(`Guauuu, Guauuu!!!`);
+	ladrido(){
+		console.log(`Guauuu!, Guauuu!`);
+	}
 }
 
 
@@ -49,6 +50,6 @@ console.log('');
 
 snoopy.saludar()
 snoopy.ladrido()
-console.log('');
+console.log('')
 lolaBunny.saludar()
 lolaBunny.ladrido()
