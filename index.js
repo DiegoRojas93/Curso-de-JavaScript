@@ -1,61 +1,68 @@
-/*------------- Arrow functions ---------------*/
+/*-------- PROGRAMACION ORIENTADA A OBJETOS: PROTOTIPOS --------*/
 
-// funcion anonima traducional
-
-	// const saludo = function (nombre) {
-	// 	console.log(`Hola ${nombre}`);
-	// }
-
-	// saludo('maria');
-
-// Arrow Functions
-
-	// const saludo = nombre => console.log(`Hola ${nombre}`);
-
-	// saludo('maria');
-
-// Las arrow function tiene un return implicito
-
-const sumar = function (a, b){
-	return a + b
-}
-
-const sumar2 = (a, b) => a + b
-
-console.log(sumar(2, 3));
-console.log(sumar2(3, 3));
-
-// metodos de los arreglos
-
-const numeros = [1, 2, 3, 4, 5]
-
-numeros.forEach((numero, index) => {console.log(`El numero ${numero} esta en la posicion ${index}`)})
-
-
-// las arrow funcion pueden capturar el objeto this del contexto en el que se encuentre, pero si usamos una arrow function como metodo de un objeto, siempre capturara el this del contexto en el que se encuentra dicho objeto, osea en el window
-
-function hasmter() {
-	console.log(this);
-	console.log('');
-}
-
-hasmter()
-
-const gato = {
-	nombre: 'Garfield',
-	maullar: function () {
-		console.log(this);
-		console.log('');
+const ANIMAL__1 = {		// Objeto literal
+	nombre: 'Snoopy',
+	sonar(){
+		console.log(`Hago sonido porque estoy vivo`);
 	}
 }
 
-gato.maullar()
-
-const perro = {
-	nombre: 'Kenai',
-	ladrar1: () => { console.log('Ladrando 1:', this) },
-	ladrar2() { console.log('Ladrando 2:', this) }
+const ANIMAL__2 = {		// Objeto literal
+	nombre: 'Lola Bunny',
+	sonar(){
+		console.log(`Hago sonido porque estoy vivo`);
+	}
 }
 
-perro.ladrar1();
-perro.ladrar2();
+console.log(ANIMAL__1);
+console.log(ANIMAL__2);
+
+console.log('');
+
+
+
+// funcion constructora
+
+// version constructora_1
+
+	function Animal1(nombre, genero){
+
+		this.nombre = nombre;
+		this.genero = genero;
+
+		this.saludar = function () {              // No se pueden usar las arrow function debido a que haria referencia a this del window
+				console.log(`Hola soy ${this.nombre}`);
+			}
+	}
+
+	const snoopy1 = new Animal1('Snoopy', 'Macho');
+				lolaBunny1 = new Animal1 ('Lola Bunny', 'Hembra');
+
+	console.log(snoopy1);
+	console.log(lolaBunny1);
+
+	console.log('');
+
+// version constructora_2 :
+
+	function Animal2(nombre, genero){
+
+		this.nombre = nombre;
+		this.genero = genero;
+	}
+
+	// Metodos a asignar
+
+	Animal2.prototype.saludar = function () {     // No se pueden usar las arrow function debido a que haria referencia a this del window
+		console.log(`Hola soy ${this.nombre}`);
+	}
+
+	const snoopy2 = new Animal2('Snoopy', 'Macho',);
+				lolaBunny2 = new Animal2 ('Lola Bunny', 'Hembra');
+
+	console.log(snoopy2);
+	console.log(lolaBunny2);
+
+	console.log('');
+
+	snoopy2.saludar()
