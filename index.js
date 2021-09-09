@@ -1,68 +1,75 @@
-/* PROGRAMACION ORIENTADA A OBJETOS: Métodos estáticos, getters y setters */
+/*----------------------- Objeto console -----------------------*/
 
-// class === funcion prototiparia padre
+console.error('Esto es un error')					// Muestra un mensaje de error en la Consola
+console.warn('Esto es una advertencia')		// Emite un mensaje informativo a la Consola
+console.info('Esto es informacion')				// Emite un mensaje informativo a la Consola
 
-class Animal{
+console.log('Esto es informacion')				// Muestra un mensaje en la consola
 
-	constructor(nombre, genero){
-		this.nombre = nombre;
-		this.genero =  genero
-	}
 
-	// Metodos
+let nombre = 'Diego'
+		apellido = 'Rojas'
+		edad = 27
 
-	saludar() {
-		console.log(`Hola soy ${this.nombre}`);
-	}
+console.log(`Hola mi nombre es ${nombre} ${apellido} y tengo ${edad} años`);
+
+// comodines
+
+console.log(`Hola mi nombre es  %s %s y tengo %d años`, nombre, apellido, edad);
+
+console.clear()
+
+console.log(document);
+console.dir(document);
+
+console.clear()
+
+console.groupCollapsed(`Los cus de @JonhMircha en Youtube`)  // Abre un grupo de console
+
+	console.log(`Curso de JavaScript `);
+	console.log(`Curso de Node.js`);
+	console.log(`Curso de PWAs`);
+	console.log(`Curso de FlexBox`);
+	console.log(`Curso de Diseño  y programacion Web`);
+
+console.groupEnd();                                         // termina el grupo de console
+
+console.clear()
+
+const NUMEROS = [1, 2, 3, 4,5];
+const PERRO = {
+	nombre: 'Ayudante de santa',
+	Raza: 'Galgo',
+	color: 'cafe'
 }
 
-// Herencia
+console.table(NUMEROS)
+console.table(PERRO)
 
-class Perro extends Animal{
-	constructor(nombre, genero, tamaño){
-		super(nombre, genero) //super es un método que manda llamar el constructor del la clase padre
+console.clear()
 
-		this.tamaño = tamaño;
-		this.raza = null;
+console.time(`¿Cuanto tarda en ejecutarse el código? `)
+
+	const ARREGLO = Array(1000000);
+
+	for(let i = 0; i< ARREGLO.length; i++){
+		ARREGLO[i] = i
 	}
 
-	// metodos
-
-	saludar(){
-		console.log(`Hola soy ${this.nombre} y soy un perro`);
-	}
-
-	ladrido(){
-		console.log(`Guauuu!, Guauuu!`);
-	}
+console.timeEnd(`¿Cuanto tarda en ejecutarse el código? `)
 
 
-	// los metodos estatico: es aquel metodo que se puede ejecutar sin necesidad de instanciar la clase
+console.clear()
 
-	static queEres(){
-		console.log(`Los perros somos mamiferos que pertenecen a la familia de los caninos`);
-	}
-
-	// los setters y getters son métodos especiales que nos permiten establecer y obtener los valores de atributos de nuestra clase
-
-	get getRaza(){								// metodo obtenedos
-		return this.raza
-	}
-
-	set setRaza(raza){						// asignacion de atributos
-		this.raza = raza
-	}
+for(let i = 0; i< 100; i++){
+	console.count('Número de ejecuciones')
+	console.log(i);
 }
 
-const scooby = new Perro('Scooby', 'Macho', 'Gigante');
-		mickey = new Animal ('Mickey Mouse', 'Macho');
+console.clear()
 
-console.log('');
-console.log(scooby);
-console.log(mickey);
+let x = 3,
+		y = 2,
+		pruebaXY = `Se espera que X sea menor que Y`;
 
-console.log('');
-
-console.log(scooby.getRaza);			// se trata como atributo y no como método
-scooby.setRaza = 'Gran Danés'			// se trabaja como si se fuera asignar el valor de un atributo
-console.log(scooby.getRaza);			// se trata como atributo y no como método
+console.assert(x<y, {x,y, pruebaXY})
