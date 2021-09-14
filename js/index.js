@@ -1,89 +1,86 @@
 /*------------------------- Ejercicio 2 ------------------------*/
 
-// 5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+// 9) Programa una función que obtenga un numero aleatorio entre 501 y 600.
 
-const inversionDePalabras = ( text = '' ) => {
-	if (!text) return console.warn('No ingresaste una cadena de texto')
-	let arrayText = text.split('');
-	let arrayReverse = arrayText.reverse();
-	let textReverse = arrayReverse.join('')
-	console.info(textReverse);
-}
-
-console.groupCollapsed('Ejercicio 5')
-	inversionDePalabras()
-	inversionDePalabras('Hola mundo!')
-console.groupEnd('Ejercicio 5')
-
-
-
-
-
-
-// 6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
-
-const encontarTexto = (text, word) => {
-if (typeof text !== 'string' ) return console.warn('No ingresaste una cadena de texto')
-if (typeof word !== 'string' ) return console.warn('No ingresaste una palabra de para la busqueda')
-
-const regexp = new RegExp (word, 'gi');
-
-let resultado = text.match(regexp)
-
-console.info( resultado.length === 1 ? `La palabra ${word} se repite ${resultado.length} vez` : `La palabra ${word} se repite ${resultado.length} veces`)
-}
-
-console.groupCollapsed('Ejercicio 5')
-encontarTexto('hola mundo adios mundo', 'mundo')
-console.groupEnd('Ejercicio 5')
-
-
-
-
-
-
-// 7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
-
-const esPalindromo = (text) => {
-if (typeof text !== 'string' ) return console.warn('No ingresaste una cadena de texto')
-
-let arrayText = text.toLowerCase().replace(/ /g, '').split('');
-let arrayTextReverse = []
-
-arrayText.forEach( (word, index) => {
-	arrayTextReverse.unshift(word)
-	if (word !== arrayTextReverse[index]) {
-		console.info(`EL String ${text} no es un palindromo`)
+const numeroAleatorio = (min = '', max = '') => {
+	if(!min || typeof min === 'string'){
+		console.warn(`No ingresaste el valor minimo del rango`);
+		return
+	};
+	if(!max || typeof max === 'string') {
+		console.warn(`No ingresaste el valor maximo del rango`);
 		return
 	}
 
-	if (index === arrayText.length-1) console.info(`El String ${text} es un palindromo`)
-});
+	let number = Math.round(Math.random() * (max - min) + min)
 
+	console.log(`El numero random es ${number}`);
 }
 
-console.groupCollapsed('Ejercicio 6')
-esPalindromo();
-esPalindromo('Hola Mundo!');
-esPalindromo('Salas');
-esPalindromo('Anita la Valatina');
-console.groupEnd('Ejercicio 6')
+console.groupCollapsed('Ejercicio 9')
+	numeroAleatorio()
+	numeroAleatorio('', 600)
+	numeroAleatorio('RDG', 600)
+	numeroAleatorio(501, 'fdsfsd')
+	numeroAleatorio(501, 600)
+console.groupEnd('Ejercicio 9')
 
 
 
 
 
-// 8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+// 10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true.
 
-const eliminarPatron = (text, patron) => {
-if (typeof text !== 'string' ) return console.warn('No ingresaste una cadena de texto')
-if (typeof patron !== 'string' ) return console.warn('No ingresaste un patron de para sea eliminado del texto')
+const capicua = (numero = 0) => {
+	if (!numero) return console.warn(`No ingresaste un numero`)
+	if (typeof numero !== 'number') return console.error(`El valor ${numero} no es un nuemro`)
 
-const regexp = new RegExp (patron, 'gi');
+	numero = numero.toString();
 
-let arrayText = text.replace(regexp, '').replace(/ (y|a|o)/, ',');
+	let alRevez = numero.split('').reverse().join('')
 
-console.info(arrayText);
+	return (numero === alRevez)
+		? console.info(`Si es capícua, Número original ${numero}, Número al revés ${alRevez}`)
+		: console.info(`No es capícua, Número original ${numero}, Número al revés ${alRevez}`)
 }
 
-eliminarPatron("xyz1, xyz2, xyz3, xyz4 y xyz5", 'xyz')
+console.groupCollapsed('Ejercicio 10')
+	capicua()
+	capicua('19')
+	capicua({})
+	capicua(18.99)
+	capicua(99.99)
+	capicua(2000)
+	capicua(2002)
+console.groupEnd('Ejercicio 10')
+
+
+
+
+
+// 11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.
+
+const factorial = (num = undefined) => {
+	if (num === undefined) return console.warn('No ingresaste un numero')
+	if (typeof num !== 'number') return console.error(`El valor de ${num} ingresado, No es un numero`)
+	if (num === 0) return console.error('No se puede hacer un factorial de 0')
+	if (Math.sign(num) === -1) return console.error('No se puede hacer un factorial de un número negativo')
+
+	let factorial = 1
+
+	for (let i = 1; i < num + 1; i++) {
+		factorial *= i
+	}
+
+	console.log(factorial);
+}
+
+console.groupCollapsed('Ejercicio 11')
+	factorial()
+	factorial('5')
+	factorial([1, 2, 3])
+	factorial(0)
+	factorial(1)
+	factorial(-8)
+	factorial(5)
+console.groupEnd('Ejercicio 11')
