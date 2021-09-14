@@ -1,86 +1,89 @@
-/*------------------------- Ejercicio 1 ------------------------*/
+/*------------------------- Ejercicio 2 ------------------------*/
 
-// 1) Programa una función que cuente el número de caracteres de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá 10.
+// 5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
 
-	const contarCaracteres = (cadena = null) =>
-		(!cadena)
-			? console.warn('No ingresaste ninguna cadena')
-			: console.info(`La cadena "${cadena}" tiene ${cadena.length} caracteres`)
+const inversionDePalabras = ( text = '' ) => {
+	if (!text) return console.warn('No ingresaste una cadena de texto')
+	let arrayText = text.split('');
+	let arrayReverse = arrayText.reverse();
+	let textReverse = arrayReverse.join('')
+	console.info(textReverse);
+}
 
-	console.groupCollapsed('Ejercicio 1')
-		contarCaracteres()
-		contarCaracteres('Hola Mundo')
-	console.groupEnd('Ejercicio 1')
-
-
-
-
-
-// 2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", devolverá "Hola".
-
-	const recortarTexto = (cadena = null, longitud = undefined) =>
-		(!cadena)
-			? console.warn('No ingresaste ninguna cadena')
-			: ( longitud === undefined )
-					?	console.warn('No ingresaste la longitud para recortar el texto')
-					: console.info(cadena.slice(0, longitud))
-
-	console.groupCollapsed('Ejercicio 2')
-		recortarTexto('Hola mundo!', 4)
-		recortarTexto()
-		recortarTexto('Hola mundo2!')
-		recortarTexto('',5)
-	console.groupEnd('Ejercicio 2')
+console.groupCollapsed('Ejercicio 5')
+	inversionDePalabras()
+	inversionDePalabras('Hola mundo!')
+console.groupEnd('Ejercicio 5')
 
 
 
 
 
-// 3) Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, pe. miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal'].
 
-	let saludo = 'Yo soy Hades dios de la muerte, Hola que tal';
-	let meses = 'Ene,Feb,Mar,Abr,May,Jun,Jul,Ago,Sept,Oct,Nov,Dic'
+// 6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
 
-	const cadenaAAreglo = (cadena = '', separador = undefined) =>
-		(!cadena)
-		? console.warn('No ingresaste ninguna cadena')
-		: ( separador === undefined )
-				?	console.warn('No ingresaste el caracter separador')
-				: console.info(cadena.split(separador))
+const encontarTexto = (text, word) => {
+if (typeof text !== 'string' ) return console.warn('No ingresaste una cadena de texto')
+if (typeof word !== 'string' ) return console.warn('No ingresaste una palabra de para la busqueda')
 
-	console.groupCollapsed('Ejercicio 3')
-		cadenaAAreglo(saludo, '')
-		cadenaAAreglo(meses, ',')
-		cadenaAAreglo()
-		cadenaAAreglo(saludo)
-		cadenaAAreglo(null, ',')
-	console.groupEnd('Ejercicio 3')
+const regexp = new RegExp (word, 'gi');
+
+let resultado = text.match(regexp)
+
+console.info( resultado.length === 1 ? `La palabra ${word} se repite ${resultado.length} vez` : `La palabra ${word} se repite ${resultado.length} veces`)
+}
+
+console.groupCollapsed('Ejercicio 5')
+encontarTexto('hola mundo adios mundo', 'mundo')
+console.groupEnd('Ejercicio 5')
 
 
 
 
 
-// 4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo.
 
-	const repetirText = (texto = '', veces = undefined) => {
-		if(!texto) return console.warn('No ingresaste un texto')
+// 7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
 
-		if(veces === undefined) return console.warn('No ingresaste un numero de repeticion')
+const esPalindromo = (text) => {
+if (typeof text !== 'string' ) return console.warn('No ingresaste una cadena de texto')
 
-		if(veces === 0) return console.error('El número no puede ser 0')
+let arrayText = text.toLowerCase().replace(/ /g, '').split('');
+let arrayTextReverse = []
 
-		if(Math.sign(veces) === -1) return console.error('El número no puede ser negativo')
-
-		for (let i = 1; i <= veces; i++) console.info(`${texto}, ${i}`)
+arrayText.forEach( (word, index) => {
+	arrayTextReverse.unshift(word)
+	if (word !== arrayTextReverse[index]) {
+		console.info(`EL String ${text} no es un palindromo`)
+		return
 	}
 
-	console.groupCollapsed('Ejercicio 4')
-		repetirText('Hola mundo!', 3)
-		console.log('');
-		repetirText('Hola mundo!', 0)
-		console.log('');
-		repetirText('', 20)
-		console.log('');
-		repetirText('Hola mundo!')
-		console.log('');
-	console.groupEnd('Ejercicio 4')
+	if (index === arrayText.length-1) console.info(`El String ${text} es un palindromo`)
+});
+
+}
+
+console.groupCollapsed('Ejercicio 6')
+esPalindromo();
+esPalindromo('Hola Mundo!');
+esPalindromo('Salas');
+esPalindromo('Anita la Valatina');
+console.groupEnd('Ejercicio 6')
+
+
+
+
+
+// 8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+
+const eliminarPatron = (text, patron) => {
+if (typeof text !== 'string' ) return console.warn('No ingresaste una cadena de texto')
+if (typeof patron !== 'string' ) return console.warn('No ingresaste un patron de para sea eliminado del texto')
+
+const regexp = new RegExp (patron, 'gi');
+
+let arrayText = text.replace(regexp, '').replace(/ (y|a|o)/, ',');
+
+console.info(arrayText);
+}
+
+eliminarPatron("xyz1, xyz2, xyz3, xyz4 y xyz5", 'xyz')
