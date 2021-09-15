@@ -1,108 +1,117 @@
-/*------------------------- Ejercicio 2 ------------------------*/
+/*------------------------- Ejercicio 5 ------------------------*/
 
-// 12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
+// 15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
 
-const primo = (num = undefined) => {
-	if (num === undefined) return console.warn(`No ingresaste un numero.`);
+const conversion = (num = undefined, base = undefined) => {
+	if (num === undefined) return console.warn('No ingresaste un numero a convertir')
+	if (typeof num !== 'number') return console.error('El dato No es un número')
 
-	if (typeof num !== 'number') return console.error(`El valor ${num} ingresado no es un numero.`);
+	if (base === undefined) return console.warn('No ingresaste una base para la conversion')
+	if (typeof base !== 'number') return console.error('No ingresaste una base para la conversion')
 
-	if (num === 0) return console.error(`El cero no es divisible por el mismo, la división entre cero no está definida, por ellos el cero no es un primo.`);
+	if (base === 2 ) {
+		let result = []
+		let modulo = 0
 
-	if (num === 1) return console.error(`El numero 1, por convenio, no es considerado numero primero.`);
-
-	if(Math.sign(num) === -1) return console.error(`EL número no pusde ser negativo`);
-
-	let divisible = false;
-
-	for (let i = 2; i < num ; i++) {
-		if (num % i === 0) {
-			divisible = true
-			break
+		while (num >= 1) {
+			modulo = num % 2
+			num = num / 2;
+			if (!Number.isInteger(modulo)) {
+				num = Math.floor(num)
+				modulo = Math.floor(modulo)
+			}
+			result.unshift(modulo)
 		}
+		return console.log(parseInt(result.join('')));
 	}
 
-	return (divisible)
-		? console.log(`El número ${num}, No es primo`)
-		: console.log(`El número ${num}, Si es primo`)
+	if(base === 10 ){
+		let lista = num.toString().split('');
+		let lista2 = [];
+		let lista3 = [];
+		let reducer = (acumulado, valor) => acumulado + valor;
+
+		lista.forEach(element => lista2.unshift(parseInt(element, 10)));
+
+		for (let i = 0; i < lista2.length; i++) {
+			lista3.push(lista2[i]*(2**i))
+		}
+
+		console.log(lista3.reduce(reducer));
+	}
 }
 
-console.groupCollapsed('Ejercicio 12')
-	primo()
-	primo('320')
-	primo(true)
-	primo({})
-	primo(1)
-	primo(-13)
-	primo(13)
-	primo(200)
-console.groupEnd('Ejercicio 12')
+console.groupCollapsed('Ejercicio 15')
+	conversion()
+	conversion('gf', 2)
+	conversion(30, 2)
+	conversion(100, 2)
+	conversion(11110, 10)
+	conversion(1100100, 10)
+console.groupEnd('Ejercicio 15')
 
 
 
 
 
-// 13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
+// 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
 
-const parOImpar = (num = undefined) => {
-if (num === undefined) return console.warn(`No ingersaste un numero.`);
 
-if (typeof num !== 'number') return console.error(`El valor ${num} ingresado no es un numero.`);
 
-if (num === 0) return console.error(`La división entre cero no está definida.`);
+const monto = (valor = undefined, descuento = 0) => {
+	if (valor === undefined) return console.warn('No ingresaste un valor')
+	if (valor === 0) return console.warn('El valor nunca sera cero')
+	if (typeof valor !== 'number') return console.error('El valor no es una cantidad de dinero (No es un numero)')
+	if (Math.sign(valor) === -1) return console.error('El valor no debera ser negativo')
 
-(num % 2 === 0 )
-	? console.info(`EL número ${num} es par.`)
-	: console.info(`EL número ${num} es impar.`)
+
+	if (typeof descuento !== 'number') return console.error('El descuento no es un valor (No es un numero)')
+	if (Math.sign(descuento) === -1) return console.error('El descuento no debera ser negativo')
+
+	let resultado = valor - ( valor * ( descuento / 100) );
+
+	console.info(`El monto de ${valor} con el descuento de ${descuento}% es: ${resultado}`);
 }
 
-console.groupCollapsed('Ejercicio 13')
-parOImpar()
-parOImpar('')
-parOImpar('FHFGJ')
-parOImpar(0)
-parOImpar(1)
-parOImpar(2)
-parOImpar(3)
-parOImpar(-4)
-parOImpar(5)
-console.groupEnd('Ejercicio 13')
+console.groupCollapsed('Ejercicio 16')
+	monto()
+	monto('',)
+	monto(20,'')
+	monto(-2000,20)
+	monto(2000,-20)
+	monto(1000,20)
+	monto(2000,20)
+	monto(700)
+console.groupEnd('Ejercicio 16')
 
 
 
 
 
-// 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
+// 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
 
-const conversion = ( num = undefined, grado = undefined) =>{
-if (num === undefined) return console.warn('No ingresaste un valor a convertir')
+const añosTrascurridos = (fechaDeNacimiento = undefined) => {
+	if (fechaDeNacimiento === undefined) return console.warn ('No ingresaste una fecha')
 
-if (typeof num !== 'number') return console.error('El dato, No es un valor a convertir')
+	if ( !(fechaDeNacimiento instanceof Date)) return console.error('La fecha de nacimiento no es una fecha valida')
 
+	let tiempoEnMili = new Date() - fechaDeNacimiento;
+	let añosEnMili = 1000 * 60 *60 * 24 * 365;
 
-if (grado === undefined) return console.warn('Ingresa un grado: F ó C')
+	const añosTrascurridos = Math.floor(tiempoEnMili / añosEnMili);
 
-if (typeof grado !== 'string') return console.error('Este dato no es una medida de temperatura')
-
-if (grado.length !== 1 || !/(C|F)/i.test(grado) ) return console.error('Valor de la unidad no reconocida')
-
-
-if (/c/i.test(grado)) return console.info(`${num}C° = ${Math.round((num * ( 9 / 5)) + 32)}F°`);
-
-if (/f/i.test(grado)) return console.info(`${num}F° = ${Math.round(((num-32)*(5 / 9)))}C°`);
-
-
+	return (Math.sign(añosTrascurridos) === -1)
+		? console.info(`Faltan ${Math.abs(añosTranscurridos)} años para el ${fechaDeNacimiento.getFullYear()}`)
+		: (Math.sign(añosTrascurridos) === 1)
+			? console.info(`Han pasado ${añosTrascurridos} años, desde ${fechaDeNacimiento}`)
+			: console.info(`Estamos en el año actual ${fecha.getFullYear()}`)
 }
 
-console.groupCollapsed('Ejercicio 14')
-
-conversion()
-conversion('2')
-conversion(2)
-conversion(2,true)
-conversion(2,'Hola')
-conversion(2,'E')
-conversion(0,'C')
-conversion(32,'f')
-
-console.groupEnd('Ejercicio 14')
+console.groupCollapsed('Ejercicio 17')
+	añosTrascurridos()
+	añosTrascurridos({})
+	añosTrascurridos(false)
+	añosTrascurridos('1993, 9, 11')
+	añosTrascurridos(1993, 9, 11)
+	añosTrascurridos(new Date(1993, 9, 11))
+console.groupEnd('Ejercicio 17')
