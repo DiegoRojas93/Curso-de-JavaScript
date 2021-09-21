@@ -1,88 +1,87 @@
-/*------------------------- Ejercicio 6 ------------------------*/
+/*------------------------- Ejercicio 7 ------------------------*/
 
-// 18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.
+// 21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
 
-const abecedario = (text = undefined) => {
-	if (text === undefined) return console.warn(`No has ingresado un texto`);
+const elevacionDeNumeros = (array = undefined) => {
+	if (array === undefined) return console.warn('No ingresaste un arreglo de números')
 
-	if (typeof text !== 'string') return console.error(`El dato ingresado no es una cadena de texto`);
+	if (!(array instanceof Array)) return console.error(`No ingresaste un Array`)
 
-	const VOCALES = /(a|e|i|o|u|A|E|I|O|U|á|é|í|ó|Á|É|Í|Ó|Ú)+/gi;
-	const CONSONANTES = /[^(a|e|i|o|u|A|E|I|O|U|á|é|í|ó|Á|É|Í|Ó|Ú )]/gi;
+	if(array.length === 0) return console.error(`El arreglo esta vacio`)
 
-	console.info(`Vocales: ${text.match(VOCALES).length}, Consonantes: ${text.match(CONSONANTES).length}`)
-}
-
-console.groupCollapsed('Ejercicio 18')
-	abecedario()
-	abecedario(36)
-	abecedario('Hola mundo')
-console.groupEnd('Ejercicio 18')
-
-
-
-
-
-// 19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
-
-const isNombre = (text = undefined) => {
-	if (text === undefined) return console.warn(`No has ingresado un texto`);
-
-	if (typeof text !== 'string') return console.error(`El dato ingresado no es una cadena de texto`);
-
-	const NOMBRE = /^((((![0-9])+)?[A-Z])(\w\D ?)+){1,2}$/;
-
-	if(NOMBRE.test(text)){
-		return console.info(`El texto ${text}, si es un nombre de una persona`);
-	}else{
-		return console.error(`El texto ${text}, No es un nombre de una persona`);
+	for (let i = 0; i < array.length; i++) {
+		if (typeof array[i] !== 'number') return console.error(`El dato ${array[i]} de la posicion ${i+1} del array no es un número`)
 	}
+
+
+	const array2 = array.map((num) => num**2)
+
+	console.log(array2);
 }
 
-console.groupCollapsed('Ejercicio 19')
-	isNombre('3')
-	isNombre('347')
-	isNombre('7D')
-	isNombre('7468D')
-	isNombre('7Diego')
-	isNombre('746Diego')
-	isNombre('D')
-	isNombre('Diego')
-	isNombre('Diego ')
-	isNombre('Dieg7o')
-	isNombre('Di64eg7o')
-	isNombre('Diego Fernando')
-	isNombre('Diego Fernando Rojas')
-	isNombre('Diego Fernando Rojas Quintero')
-	isNombre('Diego Fernando Rojas Quintero ')
-console.groupEnd('Ejercicio 19')
+console.groupCollapsed('Ejercicio 21')
+	elevacionDeNumeros()
+	elevacionDeNumeros(534)
+	elevacionDeNumeros('bsfkdjn')
+	elevacionDeNumeros({a: 1, b: 2, c: 3})
+	elevacionDeNumeros([1, 2, 'f'])
+	elevacionDeNumeros([1, 2, 3])
+	elevacionDeNumeros([1, 4, 5])
+console.groupEnd('Ejercicio 21')
 
 
 
 
 
+// 22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
 
-// 20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
+const filtro = (array = undefined) => {
+	if (array === undefined) return console.warn('No ingresaste un arreglo de números')
 
-const isEmail = (correo = undefined) => {
-if (correo === undefined) return console.warn(`No has ingresado un texto`);
+	if (!(array instanceof Array)) return console.error(`No ingresaste un Array`)
 
-if (typeof correo !== 'string') return console.error(`El dato ingresado no es una cadena de texto`);
+	if(array.length === 0) return console.error(`El arreglo esta vacio`)
 
-const EMAIL = /[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})/i;
+	for (let i = 0; i < array.length; i++) {
+		if (typeof array[i] !== 'number') return console.error(`El dato ${array[i]} de la posicion ${i} del array no es un número`)
+	}
 
-if(EMAIL.test(correo)){
-	return console.info(`${correo}, Si es un correo`)
-}else{
-	return console.error(`${correo}, No es un correo`)
-}
+	console.info(`Arreglo original ${array}\n Valor mayor: ${Math.max(...array)}\n Valor menor ${Math.min(...array)}`);
 }
 
-console.groupCollapsed('Ejercicio 20')
-isEmail()
-isEmail('@gmail.co')
-isEmail('@gmail.com')
-isEmail('@gmail.com.co')
-isEmail('@yahoo.com.')
-isEmail('diego93@yahoo.com.')
-console.groupEnd('Ejercicio 20')
+console.groupCollapsed('Ejercicio 22')
+	filtro()
+	filtro([1, 'g', 99, -60])
+	filtro([1, 4, 99, -60])
+	filtro([1, 4, 3, 25])
+console.groupEnd('Ejercicio 22')
+
+
+
+
+
+// 23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}.
+
+const newArray = ( array = undefined) => {
+	if (array === undefined) return console.warn('No ingresaste un arreglo de números')
+
+	if (!(array instanceof Array)) return console.error(`No ingresaste un Array`)
+
+	if(array.length === 0) return console.error(`El arreglo esta vacio`)
+
+	for (let i = 0; i < array.length; i++) {
+		if (typeof array[i] !== 'number') return console.error(`El dato ${array[i]} de la posicion ${i} del array no es un número`)
+	}
+
+	return console.log({
+		pares: array.filter(num => num % 2 === 0),
+		impares: array.filter(num => num % 2 === 1)
+	});
+}
+
+console.groupCollapsed('Ejercicio 23')
+	newArray()
+	newArray([1, 'g', 99, -60])
+	newArray([1, 4, 99, -60])
+	newArray([1, 2, 3, 4, 5])
+console.groupEnd('Ejercicio 23')
