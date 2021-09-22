@@ -1,35 +1,41 @@
-function cuadradoCallback(value, callback){
-	setTimeout(() => {
-		callback(value, value * value)
-	}, 0 | Math.random() * 1000);
+function cuadradoPromise(valor){
+	if (typeof valor !== 'number') return Promise.reject(`Error, el valor "${valor}" ingresado no es un número`)
+
+	return new Promise ((resolve, reject)=>{
+		setTimeout(() => {
+			resolve({
+				valor,
+				result: valor * valor
+			})
+		}, 0 | Math.random()*1000);
+	})
 }
 
-//----------------------------------------------------------------
-cuadradoCallback(0, (value, result)=> {
-	console.info(`Inicia Callback`);
-	console.info(`Callback ${value}, ${result}`)
-})
 
 
-//--------------------------------
-
-cuadradoCallback(0, (value, result)=> {
-	console.info(`Inicia Callback 0`);
-	console.info(`Callback ${value}, ${result}`)
-
-	cuadradoCallback(1, (value, result)=> {
-		console.info(`\nInicia Callback 1 `);
-		console.info(`Callback ${value}, ${result}`)
-
-		cuadradoCallback(2, (value, result)=> {
-			console.info(`\nInicia Callback 2`);
-			console.info(`Callback ${value}, ${result}`)
-
-			cuadradoCallback(3, (value, result)=> {
-				console.info(`\nInicia Callback 3`);
-				console.info(`Callback ${value}, ${result}`)
-			})
-		})
+cuadradoPromise(0)
+	.then(objeto => {
+		console.info('Inicio de la Promesa')
+		console.info(`La Promesa de ${objeto.valor} es idual a ${objeto.result}`)
+		return cuadradoPromise(1)
 	})
-})
-
+	.then(objeto => {
+		console.info(`La Promesa de ${objeto.valor} es idual a ${objeto.result}`)
+		return cuadradoPromise(2)
+	})
+	.then(objeto => {
+		console.info(`La Promesa de ${objeto.valor} es idual a ${objeto.result}`)
+		return cuadradoPromise('3')
+	})
+	.then(objeto => {
+		console.info(`La Promesa de ${objeto.valor} es idual a ${objeto.result}`)
+		return cuadradoPromise(4)
+	})
+	.then(objeto => {
+		console.info(`La Promesa de ${objeto.valor} es idual a ${objeto.result}`)
+		return cuadradoPromise(5)
+	})
+	.then(objeto => {
+		console.info('Fin de la Promesa')
+	})
+	.catch(err => console.error(err))
