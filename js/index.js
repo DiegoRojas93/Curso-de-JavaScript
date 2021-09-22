@@ -1,43 +1,35 @@
-// JavaScript Síncrono y bloqueante
+function cuadradoCallback(value, callback){
+	setTimeout(() => {
+		callback(value, value * value)
+	}, 0 | Math.random() * 1000);
+}
 
-+(()=>{
-	console.log("Inicio");
-
-	function dos() {
-		console.log("Dos");
-	}
-
-	function uno() {
-		console.log("Uno");
-		dos();
-		console.log("Tres");
-	}
-
-	uno();
-	console.log("Fin");
-})();
+//----------------------------------------------------------------
+cuadradoCallback(0, (value, result)=> {
+	console.info(`Inicia Callback`);
+	console.info(`Callback ${value}, ${result}`)
+})
 
 
+//--------------------------------
 
-// JavaScript Síncrono y bloqueante
+cuadradoCallback(0, (value, result)=> {
+	console.info(`Inicia Callback 0`);
+	console.info(`Callback ${value}, ${result}`)
 
-!(()=>{
-	console.log("Inicio");
+	cuadradoCallback(1, (value, result)=> {
+		console.info(`\nInicia Callback 1 `);
+		console.info(`Callback ${value}, ${result}`)
 
-	function dos() {
-		setTimeout(function () {
-			console.log("Dos");
-		}, 1000);
-	}
+		cuadradoCallback(2, (value, result)=> {
+			console.info(`\nInicia Callback 2`);
+			console.info(`Callback ${value}, ${result}`)
 
-	function uno() {
-		setTimeout(function () {
-			console.log("Uno");
-		}, 0);
-		dos();
-		console.log("Tres");
-	}
+			cuadradoCallback(3, (value, result)=> {
+				console.info(`\nInicia Callback 3`);
+				console.info(`Callback ${value}, ${result}`)
+			})
+		})
+	})
+})
 
-	uno();
-	console.log("Fin");
-})();
