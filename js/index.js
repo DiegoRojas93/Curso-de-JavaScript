@@ -1,41 +1,81 @@
-function cuadradoPromise(valor){
-	if (typeof valor !== 'number') return Promise.reject(`Error, el valor "${valor}" ingresado no es un número`)
+function elevacion (num){
+	if(typeof num !== 'number') return Promise.reject(`Error, el valor ${num} no es un número`)
 
-	return new Promise ((resolve, reject)=>{
+	return new Promise(resolve=>{
 		setTimeout(() => {
 			resolve({
-				valor,
-				result: valor * valor
+				num,
+				result: num * num
 			})
-		}, 0 | Math.random()*1000);
+		}, Math.random() * 1000);
 	})
 }
 
+// funcion asincrona declarada
+
+async function funcionAsincronaDeclarada(){
+	try {
+		console.info(`Inicion Async Await`);
 
 
-cuadradoPromise(0)
-	.then(objeto => {
-		console.info('Inicio de la Promesa')
-		console.info(`La Promesa de ${objeto.valor} es idual a ${objeto.result}`)
-		return cuadradoPromise(1)
-	})
-	.then(objeto => {
-		console.info(`La Promesa de ${objeto.valor} es idual a ${objeto.result}`)
-		return cuadradoPromise(2)
-	})
-	.then(objeto => {
-		console.info(`La Promesa de ${objeto.valor} es idual a ${objeto.result}`)
-		return cuadradoPromise('3')
-	})
-	.then(objeto => {
-		console.info(`La Promesa de ${objeto.valor} es idual a ${objeto.result}`)
-		return cuadradoPromise(4)
-	})
-	.then(objeto => {
-		console.info(`La Promesa de ${objeto.valor} es idual a ${objeto.result}`)
-		return cuadradoPromise(5)
-	})
-	.then(objeto => {
-		console.info('Fin de la Promesa')
-	})
-	.catch(err => console.error(err))
+		let obj = await elevacion(0)
+		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+
+		obj = await elevacion(1)
+		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+
+		obj = await elevacion(2)
+		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+
+		obj = await elevacion(3)
+		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+
+		obj = await elevacion('4')
+		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+
+		obj = await elevacion(5)
+		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+
+
+		console.info(`Fin Async Await`);
+
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+
+funcionAsincronaDeclarada()
+
+
+
+// funcion asincrona expresada
+
+const funcionAsincionaExpresada = async() =>{
+	try {
+		console.info(`Inicion Async Await`);
+
+
+		let obj = await elevacion(6)
+		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+
+		obj = await elevacion(7)
+		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+
+		obj = await elevacion(8)
+		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+
+		obj = await elevacion('9')
+		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+
+		obj = await elevacion(10)
+		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+
+		console.info(`Fin Async Await`);
+
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+funcionAsincionaExpresada()
