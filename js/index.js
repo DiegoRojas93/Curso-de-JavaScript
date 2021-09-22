@@ -1,31 +1,43 @@
-console.log('inicio');
+// JavaScript Síncrono y bloqueante
 
-setTimeout(()=>{
-	console.log(`Ejecutanto un setTimeout\nesto se ejecuta una sóla vez`)
-},3000)
++(()=>{
+	console.log("Inicio");
 
-setInterval(() => {
-	console.log(`Ejecutanto un setInterval\nesto se ejecuta indefinidamente cada cierto intervalo de tiempo`)
-}, 1000);
+	function dos() {
+		console.log("Dos");
+	}
 
+	function uno() {
+		console.log("Uno");
+		dos();
+		console.log("Tres");
+	}
 
-
-// cancelacion
-
-let temporizador = setTimeout(() => {
-	console.log(new Date().toLocaleTimeString());
-}, 1000);
-
-clearTimeout(temporizador)
-
-console.log(`Despues de clearTimeOut`);
+	uno();
+	console.log("Fin");
+})();
 
 
 
-let Intervalo = setInterval(() => {
-	console.log(new Date().toLocaleTimeString());
-}, 1000);
+// JavaScript Síncrono y bloqueante
 
-clearInterval(Intervalo)
+!(()=>{
+	console.log("Inicio");
 
-console.log(`Despues de clearInterval`);
+	function dos() {
+		setTimeout(function () {
+			console.log("Dos");
+		}, 1000);
+	}
+
+	function uno() {
+		setTimeout(function () {
+			console.log("Uno");
+		}, 0);
+		dos();
+		console.log("Tres");
+	}
+
+	uno();
+	console.log("Fin");
+})();
