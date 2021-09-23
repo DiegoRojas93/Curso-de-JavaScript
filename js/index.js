@@ -1,50 +1,61 @@
-//---------------------Nuevos Datos en JacaScript-----------------
+//---------------------Nuevos Datos en JavaScript-----------------
 
-// Maps
+// WeakSets
 
-const mapa= new Map([ ['Nombre', 'Losbein'], ['Edad', '7'], ['Animal', 'perro'], [null, 'nulo']])
+const WS = new WeakSet()
 
+let valor1 = {'valor1': 1};
+let valor2 = {'valor2': 2};
+let valor3 = {'valor3': 3};
 
-console.log(mapa);
-console.log(mapa.size);									// size es igual a length
-console.log(mapa.has('Nombre'));				// has (devuelve un booleano si el key existe o no eciste)
-console.log(mapa.get('Nombre'));				// Retorna el valor que tiene la key dentro del objeto Map
+WS.add(valor1)								// Adicionando una referencia debil
+WS.add(valor2)
+WS.add(valor3)
 
+console.log(WS);
+console.log(WS.has(valor3));	// Existe o No eciste la referncia debil
 
-
-// Eliminando propiedades del objeto Map
-
-mapa.delete('Nombre');
-console.log(mapa);
-console.log(mapa.get('Nombre'));
-mapa.set('Nombre', 'Diego');
-
+// WS.delete(valor2)							// Adicionando una referencia debil
+console.log(WS);
 
 
-// Recorriendo un objeto Map
+	//Experimentando con Collect Garbage
 
-for (const [key, value] of mapa) {
-	console.log(`Lave: ${key}, Valor: ${value}`);
-}
+	setInterval(()=>console.info(WS),1000)
 
-mapa.set(19, '19')
-mapa.set(false, 'false')
-mapa.set({}, {})
-
-console.log(mapa);
+	setTimeout(() => {
+		valor1 = {'valor1': 1};
+		valor2 = null;
+		valor3 = undefined;
+	}, 5000);
 
 
 
-// listar key y values
+// WeakMaps
 
-const mapa2= new Map([
-	['Nombre', 'Losbein'],
-	['Edad', '7'],
-	['Animal', 'perro'],
-	[null, 'nulo'],
-])
+const WM = new WeakMap()
 
-const llavesMapa2 = [...mapa2.keys()]
-const valoresMapa2 = [...mapa2.values()]
+let llave1 = {};								// debemos inicializar la key com un objeto vacio y referenciarla a una variable
+let llave2 = {};
+let llave3 = {};
 
-console.log(llavesMapa2, valoresMapa2);
+WM.set(llave1, 1)								// Adicionando una referencia debil
+WM.set(llave2, 2)
+WM.set(llave3, 3)
+
+console.log(WM);
+console.log(WM.has(llave2));
+
+WM.delete(llave3)								// Eliminando la referecna debil
+console.log(WM);
+
+
+	// Experimentando con Collect Garbage
+
+	setInterval(()=>console.info(WM),1000)
+
+	setTimeout(() => {
+		llave1 = null;
+		llave2 = null;
+		llave3 = undefined;
+	}, 5000);
