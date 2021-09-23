@@ -1,71 +1,50 @@
 //---------------------Nuevos Datos en JacaScript-----------------
 
-// Sets
+// Maps
 
-const set = new Set([1, 2, 3, 3, true, [1], false, true, {}, {}, [], [],'Hola', 'hola'])
-
-console.log(set);
-console.log(set.size);	// .size es igual a length
+const mapa= new Map([ ['Nombre', 'Losbein'], ['Edad', '7'], ['Animal', 'perro'], [null, 'nulo']])
 
 
-
-// Agregando y Eliminando valores al objeto Set
-
-const set2 = new Set()
-set2.add(1)												// agregando valores
-set2.add(2)
-set2.add(3)
-set2.add(3)
-set2.add('Hola')
-set2.add('hola')
-set2.add(true)
-set2.add({})
-
-console.log(`Set original:`, set2);
-
-set2.delete('hola'); 							// Eliminando valores
-
-console.log(`Set cambiado:`, set2);
+console.log(mapa);
+console.log(mapa.size);									// size es igual a length
+console.log(mapa.has('Nombre'));				// has (devuelve un booleano si el key existe o no eciste)
+console.log(mapa.get('Nombre'));				// Retorna el valor que tiene la key dentro del objeto Map
 
 
 
-// Recorriendo un objeto set
+// Eliminando propiedades del objeto Map
 
-console.log('Recorriendo set con un un ForIn');
-
-	for (const item of set) {
-		console.log(item);
-	}
-
-console.log('\nRecorriendo set con un forEach');
-
-	set.forEach(item => {
-		console.log(item);
-	});
+mapa.delete('Nombre');
+console.log(mapa);
+console.log(mapa.get('Nombre'));
+mapa.set('Nombre', 'Diego');
 
 
 
-// Accediendo a la posición de un valor
+// Recorriendo un objeto Map
 
-let arr = Array.from(set)
+for (const [key, value] of mapa) {
+	console.log(`Lave: ${key}, Valor: ${value}`);
+}
 
-console.log(arr);
-console.log(arr[10]);
+mapa.set(19, '19')
+mapa.set(false, 'false')
+mapa.set({}, {})
 
-
-
-// comprobando valores
-
-console.log(set.has('hola'));
-
-console.log(set.has(19));
+console.log(mapa);
 
 
 
-// Borrando los datos del objeto set
+// listar key y values
 
-console.log(set);
+const mapa2= new Map([
+	['Nombre', 'Losbein'],
+	['Edad', '7'],
+	['Animal', 'perro'],
+	[null, 'nulo'],
+])
 
-set.clear();
+const llavesMapa2 = [...mapa2.keys()]
+const valoresMapa2 = [...mapa2.values()]
 
-console.log(set);
+console.log(llavesMapa2, valoresMapa2);
