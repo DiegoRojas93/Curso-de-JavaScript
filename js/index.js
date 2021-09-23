@@ -1,61 +1,26 @@
 //---------------------Nuevos Datos en JavaScript-----------------
 
-// WeakSets
+// Iterables
 
-const WS = new WeakSet()
+const iterable = [...new Set([1, 2, 3, 4, 5, 3, 4, 5])]
+// const iterable = [1, 2, 3, 4, 5]
+// const iterable = { 'a': 1, 'b': 2, 'c': 3}
+// const iterable = new Map ([['Nombre', 'Diego'], [null, 'Nulo']])
 
-let valor1 = {'valor1': 1};
-let valor2 = {'valor2': 2};
-let valor3 = {'valor3': 3};
+// Iterators = indicador de un cliclo
 
-WS.add(valor1)								// Adicionando una referencia debil
-WS.add(valor2)
-WS.add(valor3)
+//Acediendo al iterador del iterable
 
-console.log(WS);
-console.log(WS.has(valor3));	// Existe o No eciste la referncia debil
+const iterador = iterable[Symbol.iterator]()			//Acedemos a un simbolo especial
 
-// WS.delete(valor2)							// Adicionando una referencia debil
-console.log(WS);
+console.info(iterable)
+console.info(iterador)
 
+console.info(iterador.next())							// value = valor del arreglo;	done = los elementos se acabaron
 
-	//Experimentando con Collect Garbage
+let next = iterador.next();
 
-	setInterval(()=>console.info(WS),1000)
-
-	setTimeout(() => {
-		valor1 = {'valor1': 1};
-		valor2 = null;
-		valor3 = undefined;
-	}, 5000);
-
-
-
-// WeakMaps
-
-const WM = new WeakMap()
-
-let llave1 = {};								// debemos inicializar la key com un objeto vacio y referenciarla a una variable
-let llave2 = {};
-let llave3 = {};
-
-WM.set(llave1, 1)								// Adicionando una referencia debil
-WM.set(llave2, 2)
-WM.set(llave3, 3)
-
-console.log(WM);
-console.log(WM.has(llave2));
-
-WM.delete(llave3)								// Eliminando la referecna debil
-console.log(WM);
-
-
-	// Experimentando con Collect Garbage
-
-	setInterval(()=>console.info(WM),1000)
-
-	setTimeout(() => {
-		llave1 = null;
-		llave2 = null;
-		llave3 = undefined;
-	}, 5000);
+while (!next.done) {
+	console.info(next.value);
+	next = iterador.next()
+}
