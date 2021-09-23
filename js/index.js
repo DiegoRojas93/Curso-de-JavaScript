@@ -1,26 +1,66 @@
 //---------------------Nuevos Datos en JavaScript-----------------
 
-// Iterables
+// Funcion generadora
 
-const iterable = [...new Set([1, 2, 3, 4, 5, 3, 4, 5])]
-// const iterable = [1, 2, 3, 4, 5]
-// const iterable = { 'a': 1, 'b': 2, 'c': 3}
-// const iterable = new Map ([['Nombre', 'Diego'], [null, 'Nulo']])
+function* iterable() {
+	yield 'Hola';														//yield pausa u reanuda una funcion generadora
+	console.log('Hola Consola');
+	yield 'Hola 2';
+	console.log('Seguimos con más instrucciones de nuesto código');
+	yield 'Hola 3';
+	yield 'Hola 4';
+}
 
-// Iterators = indicador de un cliclo
 
-//Acediendo al iterador del iterable
+// Generators
 
-const iterador = iterable[Symbol.iterator]()			//Acedemos a un simbolo especial
+let iterator = iterable()
 
-console.info(iterable)
-console.info(iterador)
+console.log(iterator);
 
-console.info(iterador.next())							// value = valor del arreglo;	done = los elementos se acabaron
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
 
-let next = iterador.next();
 
-while (!next.done) {
-	console.info(next.value);
-	next = iterador.next()
+// usando un ciclo
+
+for (let y of iterator) {
+	console.log(y);
+}
+
+// Guardando el valor de los yields de un generator en un array
+
+let arr = [...iterable()]
+// let arr = Array.from(iterable())
+
+console.log(arr);
+
+
+// Trabajando la asincronia con los Generators
+
+function cuadrado(valor) {
+	setTimeout(() => {
+		return console.info({valor, resultado: valor*valor})
+	}, Math.random()*1000);
+}
+
+function* generador() {
+	console.log('Inicia Generator');
+	yield cuadrado(0)
+	yield cuadrado(1)
+	yield cuadrado(2)
+	yield cuadrado(3)
+	yield cuadrado(4)
+	yield cuadrado(5)
+	console.log('Termina Generator');
+}
+
+
+let gen = generador()
+
+for (const y of gen) {
+	console.log(y);
 }
