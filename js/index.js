@@ -1,66 +1,50 @@
 //---------------------Nuevos Datos en JavaScript-----------------
 
-// Funcion generadora
+// Proxies
 
-function* iterable() {
-	yield 'Hola';														//yield pausa u reanuda una funcion generadora
-	console.log('Hola Consola');
-	yield 'Hola 2';
-	console.log('Seguimos con más instrucciones de nuesto código');
-	yield 'Hola 3';
-	yield 'Hola 4';
+
+// Objeto literal
+
+const persona = {
+	name: '',
+	lastName: '',
+	age: 0
 }
 
+//Handler
 
-// Generators
+const manejador = {
+	set(obj, propiedades, valor){			// En el set creamos las funciones que validaran la creacion de la copia del objeto literal
 
-let iterator = iterable()
+		if (Object.keys(obj).indexOf(propiedades) === -1){	// si la propiedad no exite en el objeto literal original retorname el error
 
-console.log(iterator);
+			return console.error(`La propiedad "${propiedades}" no existe en el objeto persona`)
+		}
 
-// console.log(iterator.next());
-// console.log(iterator.next());
-// console.log(iterator.next());
-// console.log(iterator.next());
-// console.log(iterator.next());
+		if ((propiedades === 'name' || propiedades === 'lastName') && !(/^[A-Za-zÑñÁÉÍÓÚáéíóú\s]+$/g.test(valor))) {
 
+			// Si la pripiedad es name ó lastmane y el valor no cumple con la expresion regular, retorneme el error
+			return console.error(`La propiedad "${propiedades}" sólo acepta letras y espacio en blanco`)
+		}
 
-// usando un ciclo
-
-for (let y of iterator) {
-	console.log(y);
+		obj[propiedades] = valor			// Creando la propiedad y el valor de la copia
+	}
 }
 
-// Guardando el valor de los yields de un generator en un array
+// uso del PROXIE
 
-let arr = [...iterable()]
-// let arr = Array.from(iterable())
-
-console.log(arr);
+const DIEGO = new Proxy(persona, manejador)
 
 
-// Trabajando la asincronia con los Generators
+console.info(persona)
+console.info(DIEGO)
+console.log('');
 
-function cuadrado(valor) {
-	setTimeout(() => {
-		return console.info({valor, resultado: valor*valor})
-	}, Math.random()*1000);
-}
+DIEGO.name = 'Diego';
+DIEGO.lastName = 'Rojas';
+DIEGO.age = 27;
+DIEGO.twitter = '@DiegoFrontend';  // arroja un error debido a que la propiedad no exite
 
-function* generador() {
-	console.log('Inicia Generator');
-	yield cuadrado(0)
-	yield cuadrado(1)
-	yield cuadrado(2)
-	yield cuadrado(3)
-	yield cuadrado(4)
-	yield cuadrado(5)
-	console.log('Termina Generator');
-}
-
-
-let gen = generador()
-
-for (const y of gen) {
-	console.log(y);
-}
+console.log('');
+console.info(persona)
+console.info(DIEGO)
