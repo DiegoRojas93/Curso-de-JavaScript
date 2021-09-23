@@ -1,81 +1,55 @@
-function elevacion (num){
-	if(typeof num !== 'number') return Promise.reject(`Error, el valor ${num} no es un número`)
+//---------------------Nuevos Datos en JacaScript-----------------
 
-	return new Promise(resolve=>{
-		setTimeout(() => {
-			resolve({
-				num,
-				result: num * num
-			})
-		}, Math.random() * 1000);
-	})
-}
+// Symbol()
 
-// funcion asincrona declarada
+let id = Symbol('id')
+		id2= Symbol('id')
 
-async function funcionAsincronaDeclarada(){
-	try {
-		console.info(`Inicion Async Await`);
+console.log(id === id2);
+console.log(id, id2);
+console.log(typeof id, typeof id2);
 
 
-		let obj = await elevacion(0)
-		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
 
-		obj = await elevacion(1)
-		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+const NOMBRE = Symbol('nombre');
+			SALUDAR = Symbol('saludar')
+			SALUDAR2 = Symbol('saludar2')
 
-		obj = await elevacion(2)
-		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+// Siempre deberemos Declarar un symbol antes de crear el objeto en sí
 
-		obj = await elevacion(3)
-		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
+const persona = {
+	[NOMBRE]: 'Diego', // Para la Inicializar de un symbol deberemos usar []
+	edad: 27,
 
-		obj = await elevacion('4')
-		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
-
-		obj = await elevacion(5)
-		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
-
-
-		console.info(`Fin Async Await`);
-
-	} catch (error) {
-		console.error(error);
+	[SALUDAR]: function(){
+		console.info(`Hola 1`);
 	}
+};
+
+persona[SALUDAR2] = function () {
+	console.log('Hola');
+}
+
+persona.NOMBRE = 'Jhonathan MirCha'
+
+
+
+
+// Llamado y ejecución de un simbol
+
+console.info(persona.NOMBRE);
+console.info(persona[NOMBRE]);  // llamado a un atributo
+persona[SALUDAR]()							// invocacion de un método
+persona[SALUDAR2]()
+
+
+// Recorriendo todas las propiedades de un objeto
+
+for (const propiedad in persona) {
+	console.info(`${propiedad} = ${persona[propiedad]}`)
 }
 
 
-funcionAsincronaDeclarada()
+// listar los atributos privados de un objeto
 
-
-
-// funcion asincrona expresada
-
-const funcionAsincionaExpresada = async() =>{
-	try {
-		console.info(`Inicion Async Await`);
-
-
-		let obj = await elevacion(6)
-		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
-
-		obj = await elevacion(7)
-		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
-
-		obj = await elevacion(8)
-		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
-
-		obj = await elevacion('9')
-		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
-
-		obj = await elevacion(10)
-		console.info(`Async Funcion: ${obj.num}, ${obj.result}`)
-
-		console.info(`Fin Async Await`);
-
-	} catch (error) {
-		console.error(error);
-	}
-}
-
-funcionAsincionaExpresada()
+console.log(Object.getOwnPropertySymbols(persona))
