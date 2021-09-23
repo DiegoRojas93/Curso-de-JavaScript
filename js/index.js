@@ -1,55 +1,71 @@
 //---------------------Nuevos Datos en JacaScript-----------------
 
-// Symbol()
+// Sets
 
-let id = Symbol('id')
-		id2= Symbol('id')
+const set = new Set([1, 2, 3, 3, true, [1], false, true, {}, {}, [], [],'Hola', 'hola'])
 
-console.log(id === id2);
-console.log(id, id2);
-console.log(typeof id, typeof id2);
+console.log(set);
+console.log(set.size);	// .size es igual a length
 
 
 
-const NOMBRE = Symbol('nombre');
-			SALUDAR = Symbol('saludar')
-			SALUDAR2 = Symbol('saludar2')
+// Agregando y Eliminando valores al objeto Set
 
-// Siempre deberemos Declarar un symbol antes de crear el objeto en sí
+const set2 = new Set()
+set2.add(1)												// agregando valores
+set2.add(2)
+set2.add(3)
+set2.add(3)
+set2.add('Hola')
+set2.add('hola')
+set2.add(true)
+set2.add({})
 
-const persona = {
-	[NOMBRE]: 'Diego', // Para la Inicializar de un symbol deberemos usar []
-	edad: 27,
+console.log(`Set original:`, set2);
 
-	[SALUDAR]: function(){
-		console.info(`Hola 1`);
+set2.delete('hola'); 							// Eliminando valores
+
+console.log(`Set cambiado:`, set2);
+
+
+
+// Recorriendo un objeto set
+
+console.log('Recorriendo set con un un ForIn');
+
+	for (const item of set) {
+		console.log(item);
 	}
-};
 
-persona[SALUDAR2] = function () {
-	console.log('Hola');
-}
+console.log('\nRecorriendo set con un forEach');
 
-persona.NOMBRE = 'Jhonathan MirCha'
-
+	set.forEach(item => {
+		console.log(item);
+	});
 
 
 
-// Llamado y ejecución de un simbol
+// Accediendo a la posición de un valor
 
-console.info(persona.NOMBRE);
-console.info(persona[NOMBRE]);  // llamado a un atributo
-persona[SALUDAR]()							// invocacion de un método
-persona[SALUDAR2]()
+let arr = Array.from(set)
 
-
-// Recorriendo todas las propiedades de un objeto
-
-for (const propiedad in persona) {
-	console.info(`${propiedad} = ${persona[propiedad]}`)
-}
+console.log(arr);
+console.log(arr[10]);
 
 
-// listar los atributos privados de un objeto
 
-console.log(Object.getOwnPropertySymbols(persona))
+// comprobando valores
+
+console.log(set.has('hola'));
+
+console.log(set.has(19));
+
+
+
+// Borrando los datos del objeto set
+
+console.log(set);
+
+set.clear();
+
+console.log(set);
