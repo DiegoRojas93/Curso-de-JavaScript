@@ -1,59 +1,39 @@
-//------------------------------El this--------------------------
+//------------------JSON: JavaScript Object Notation--------------
 
-// Call = llamar al contexto (debe ser un objeto)
-
-this.lugar = 'Contexto Global';
-
-function saludar(saludo, aQuien) {
-		console.info(`${saludo} ${aQuien} desde el ${this.lugar}`)
+const DIEGO = {
+	nombre: 'Diego',
+	edad: 27,
+	booleano: true,
+	arreglo: ['Anime', 'Programar', 'Cine'],
+	objeto: {
+		twitter: '@DiegoFrontend',
+		email: '@gmail.com'
+	},
+	nulo: null
 }
 
-const OBJ = {
-	lugar: 'Contexto Objeto'
-}
+// Parseo
+
+console.info(JSON);
+console.info(JSON.parse("{}"));
+console.info(JSON.parse("[1, 2, 3]"));
+console.info(JSON.parse("true"));
+console.info(JSON.parse("false"));
+console.info(JSON.parse("19"));
+console.info(JSON.parse("null"));
+console.info(JSON.parse("Hola mundo!"));				// Una simple cadena no es un objeto valido para JSON
+console.info(JSON.parse("undefined"));					// undefinend no es valor aceptado para JSON
 
 
-saludar('Hola', 'Jesus')							// llamara al constexto Global
-saludar.call(OBJ, 'Hola', 'Diego')		// llamara al contexto del objeto OBJ
-saludar.call(null, 'Hola', 'Diego')		// llamara al contexto global
-saludar.call(this, 'Hola', 'Diego')		// llamara al contexto en donde se encuentre
+// Stringify
 
-
-
-// Apply = aplicar al contexto (debe ser un objeto)
-
-function saludar(saludo, aQuien) {
-	console.info(`${saludo} ${aQuien} desde el ${this.lugar}`)
-}
-
-const OBJ2 = {
-		lugar: 'Contexto Objeto'
-}
-
-saludar('Hola', 'Jesus')									// Aplicara el contexto Global
-saludar.apply(OBJ2, ['Hola', 'Diego'])			// aplicara el contexto al objeto OBJ
-saludar.apply(null, ['Hola', 'Diego'])		// Aplicara el contexto global
-saludar.apply(this, ['Hola', 'Diego'])		// Aplicara el contexto en donde se encuentre
-
-
-
-// bind = enlaza el contexto
-
-this.nombre = 'window';
-
-const persona ={
-		['nombre']: 'Diego',
-		saludar(){
-			console.info(`Hola ${this.nombre}`);
-		}
-}
-
-const otraPersona = {
-	saludar: persona.saludar.bind(persona),	//la funcion enlazala con el contexto del objeto persona
-	saludar1: persona.saludar.bind(this)		//la funcion enlazala con el contexto de global window
-}
-
-
-persona.saludar()
-otraPersona.saludar()
-otraPersona.saludar1()
+console.info(JSON);
+console.info(JSON.stringify({}));
+console.info(JSON.stringify([1, 2, 3]));
+console.info(JSON.stringify(true));
+console.info(JSON.stringify(false));
+console.info(JSON.stringify(19));
+console.info(JSON.stringify(null));
+console.info(JSON.stringify(undefined))
+console.info(JSON.stringify(DIEGO));
+console.info(JSON.stringify("Hola mundo!"));
