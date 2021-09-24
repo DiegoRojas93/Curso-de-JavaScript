@@ -1,53 +1,53 @@
-//---------------------Nuevos Datos en JavaScript-----------------
+//------------------------------El this--------------------------
 
-// Propiedades Dinámicas de los objetos
+// El this por fuera de un bloque de código
 
-let aleatorio = Math.round(Math.random() * 100 + 4)
-
-const objetoUsuarios = {
-	[`Id_${aleatorio}`] : 'Valor alatorio'
-};
-
-console.info(objetoUsuarios);
-
-const usuarios = ['Jesus', 'Diego', 'Maria', 'Jenaro']
-
-
-usuarios.forEach((usuario, index) => objetoUsuarios[`Id_${index}`] = usuario );
-
-console.info(objetoUsuarios);
+console.log(this);								// se referira a al objeto Global window del navegador
+console.log(this === window);			// true
 
 
 
-// Ejercicio
+// El this dentro de un bloque de código
 
-class Persona {
-	constructor(nombre, apellido, edad){
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.edad = edad;
-	}
+this.nombre = 'Contexto Global'		// creando una varaible global en el objeto window
 
-	saludar(){
-		console.info(`Hola, me llamo ${this.nombre} ${this.apellido} y tengo ${this.edad} años`)
-	}
+function imprimir(){
+	console.info(this.nombre)
 }
 
-const JESUS = new Persona('Jesus', 'de Nazareth', 2020);
-const DIEGO = new Persona('Diego', 'Rojas', 27);
-const MARIA = new Persona('Maria', 'Quintero', 61);
+imprimir()
 
-const LISTA = {}
-const PERSONAS = [JESUS, DIEGO, MARIA]
-
-console.info(PERSONAS);
-console.info('')
-
-PERSONAS.forEach((persona, index) => LISTA[`Id:${index}`] = persona);
-
-console.info(LISTA)
-console.info('')
-
-for (const key in LISTA) {
-	LISTA[key].saludar()
+const obj = {
+	nombre: 'Contexto del Objeto',
+	imprimir
 }
+
+obj.imprimir()
+
+
+
+// El this en una arrow Function
+
+const obj2 = {
+		nombre: 'Contexto del Objeto 2',
+	imprimir: () => console.info(this.nombre)
+}
+
+obj2.imprimir()
+
+
+
+// El this en un Closure
+
+function Persona(nombre) {
+	const that = this
+	that.nombre = nombre;
+
+	// return console.info(this.nombre)
+
+	return () => console.info(that.nombre)
+}
+
+let diego = new Persona ('Diego')
+
+diego()
