@@ -1,53 +1,59 @@
 //------------------------------El this--------------------------
 
-// El this por fuera de un bloque de código
+// Call = llamar al contexto (debe ser un objeto)
 
-console.log(this);								// se referira a al objeto Global window del navegador
-console.log(this === window);			// true
+this.lugar = 'Contexto Global';
 
-
-
-// El this dentro de un bloque de código
-
-this.nombre = 'Contexto Global'		// creando una varaible global en el objeto window
-
-function imprimir(){
-	console.info(this.nombre)
+function saludar(saludo, aQuien) {
+		console.info(`${saludo} ${aQuien} desde el ${this.lugar}`)
 }
 
-imprimir()
-
-const obj = {
-	nombre: 'Contexto del Objeto',
-	imprimir
+const OBJ = {
+	lugar: 'Contexto Objeto'
 }
 
-obj.imprimir()
+
+saludar('Hola', 'Jesus')							// llamara al constexto Global
+saludar.call(OBJ, 'Hola', 'Diego')		// llamara al contexto del objeto OBJ
+saludar.call(null, 'Hola', 'Diego')		// llamara al contexto global
+saludar.call(this, 'Hola', 'Diego')		// llamara al contexto en donde se encuentre
 
 
 
-// El this en una arrow Function
+// Apply = aplicar al contexto (debe ser un objeto)
 
-const obj2 = {
-		nombre: 'Contexto del Objeto 2',
-	imprimir: () => console.info(this.nombre)
+function saludar(saludo, aQuien) {
+	console.info(`${saludo} ${aQuien} desde el ${this.lugar}`)
 }
 
-obj2.imprimir()
-
-
-
-// El this en un Closure
-
-function Persona(nombre) {
-	const that = this
-	that.nombre = nombre;
-
-	// return console.info(this.nombre)
-
-	return () => console.info(that.nombre)
+const OBJ2 = {
+		lugar: 'Contexto Objeto'
 }
 
-let diego = new Persona ('Diego')
+saludar('Hola', 'Jesus')									// Aplicara el contexto Global
+saludar.apply(OBJ2, ['Hola', 'Diego'])			// aplicara el contexto al objeto OBJ
+saludar.apply(null, ['Hola', 'Diego'])		// Aplicara el contexto global
+saludar.apply(this, ['Hola', 'Diego'])		// Aplicara el contexto en donde se encuentre
 
-diego()
+
+
+// bind = enlaza el contexto
+
+this.nombre = 'window';
+
+const persona ={
+		['nombre']: 'Diego',
+		saludar(){
+			console.info(`Hola ${this.nombre}`);
+		}
+}
+
+const otraPersona = {
+	saludar: persona.saludar.bind(persona),	//la funcion enlazala con el contexto del objeto persona
+	saludar1: persona.saludar.bind(this)		//la funcion enlazala con el contexto de global window
+}
+
+
+persona.saludar()
+otraPersona.saludar()
+otraPersona.saludar1()
