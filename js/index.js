@@ -1,32 +1,86 @@
-//-----------------------------WEB API´s-------------------------
+//-----------------------------DWEB API´s-------------------------
 
-// DOM: Nodos, Elementos y Selectores
+// DOM: Atributos y Data-attibutes
 
-// Los Nodos son aquellos diferente partes que tiene un documentos HTML y XML
+const $DOMElement = document.documentElement
+const $linkDOM = document.querySelector('.link-dom')
 
-// Los elementos (etiquetas) y los textos (contenidos de las equiquetas p, h1, etc) son el tipo de nodos que mas vamos a utilizar
+// Atributos
 
-console.log(document.getElementsByTagName('li')); // traeme en una coleccion de todas las etiquetas que coincidan con cierto nombre.
+	// Validando la existencia de un atributo
 
-console.log(document.getElementsByName('nombre')); // traeme en un NodeList de todos los nodos, que en su atributo name contenga el nombre que especifiquemos
-
-console.log(document.getElementsByClassName('card')); // traeme en una coleccion de todas las clases que tengan el nombre card.
-
-
-
-console.log(document.getElementById('menu')); // traeme en la etiqueta con el id que proporcionemos
-
-console.log(document.querySelector('#menu')); // traeme la etiqueta con el id, class ó etiqueta que proporcionemos
-console.log(document.querySelector('a'));			// // traeme la etiqueta primera etiqueta anchoir
-
-console.log(document.querySelectorAll('img')); // traeme en un NodeList de todos los nodos imgespecifiquemos
-console.log(document.querySelectorAll('#menu li')); // traeme en un NodeList de todas las etiquetas li que esten dentro de id #menu}
+	console.log($linkDOM.hasAttribute('href'))
+	console.log($linkDOM.hasAttribute('lang'))
 
 
 
+	// obteniendo a los atributos
 
-console.log(document.getElementsByTagName('img').length)
+	console.log($DOMElement.lang);									// Con la notacion del punto
+	console.log($DOMElement.getAttribute('lang'));	// Usando el método .getAtribute()
 
-document.querySelectorAll('a').forEach((element) => {
-	console.log(element);
-});
+	console.log($linkDOM.href);											// Con la notacion del punto
+	console.log($linkDOM.getAttribute('href'));			// Usando el método .getAtribute()
+
+
+
+	// estableciendo los valores a los atributos
+
+	$DOMElement.lang = 'en'									// Con la notacion del punto
+	console.log($DOMElement.lang);
+
+	$DOMElement.setAttribute('lang', 'es')	// Usando el metodo .setAttribute()
+	console.log($DOMElement.lang);
+
+
+	console.log($linkDOM);
+	$linkDOM.setAttribute('target', '_blank')
+	$linkDOM.setAttribute('rel', 'noopener')	// evitamos que nuestra ventana que abrimos sea dependiente de otra, ecitando asi el hackeo
+	$linkDOM.setAttribute('href', 'https://youtube.com/jonmircha')
+	console.log($linkDOM);
+
+
+
+	// eliminando atributos
+
+	console.log($linkDOM.hasAttribute('rel'))
+	$linkDOM.removeAttribute('rel')							// remueve el atributo rel
+	console.log($linkDOM.hasAttribute('rel'))
+
+
+
+
+
+
+// DATA Attributes
+
+	// Validando la existencia de un Data-Attributes
+
+	console.log($linkDOM.hasAttribute('rel'))
+	console.log($linkDOM.hasAttribute('data-id'))
+
+
+
+	// obteniendo los data-Attributes
+
+	console.log($linkDOM.dataset);															// obteniendo todos los Data-Atributes
+	console.log($linkDOM.dataset.description);									// obteniendo un Data-Atributes con dataset
+	console.log($linkDOM.getAttribute('data-description'));			// obteniendo un Data-Atributes usando el método .getAttribute()
+
+
+
+	// creando un Data-Attribute o cambiando su valor
+
+	$linkDOM.setAttribute('data-description', 'Modelo de objeto del Documento')	// creando un Data-Attribute
+	console.log($linkDOM.dataset.description);
+
+	$linkDOM.dataset.description = 'Sucribete a mi canal y comparte'							// cambiando el valor de un Data-Attribute
+	console.log($linkDOM.dataset.description);
+
+
+
+	// eliminando un Data-Attribute
+
+	console.log($linkDOM.hasAttribute('data-id'))
+	$linkDOM.removeAttribute('data-id')						// Eliminando un Data-Attribute
+	console.log($linkDOM.hasAttribute('data-id'))
