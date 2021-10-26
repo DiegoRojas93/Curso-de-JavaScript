@@ -17,7 +17,7 @@ export default function getGeolocation(id) {
 	}
 
 	function data (position){
-		console.log(position);
+		// console.log(position);
 
 		let coordenadas = position.coords;
 
