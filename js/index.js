@@ -13,6 +13,7 @@ import networkStatus from "./modules/deteccion_red.js";
 import webCam from "./modules/deteccion_webcam.js";
 import geolocation from "./modules/geolocalizacion.js";
 import getGeolocation from "./modules/geolocalizacion.js";
+import searchFilters from "./modules/filtro_busquedas.js";
 
 const d = document;
 
@@ -42,6 +43,8 @@ d.addEventListener('DOMContentLoaded', e => {
 		webCam('webcam')
 
 		getGeolocation('geolocation')
+
+		searchFilters('.card-filter', '.card')
 	})
 
 d.addEventListener('keydown', e =>{
