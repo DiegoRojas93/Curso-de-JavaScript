@@ -45,13 +45,22 @@ const progressUpload = (file) => {
   fileReader.readAsDataURL(file);
 
   fileReader.addEventListener('progress', e => {
+
+    // Se daran valores de progreso a la barra y un  texto al span
+
     let progress = parseInt((e.loaded * 100) / e.total);
     $progress.value = progress;
     $span.innerHTML = `<b>${file.name} - ${progress}%</b>`
   })
 
   fileReader.addEventListener('loadend', e => {
+
+    // Ejecutaremos la funcion uploader (Subira los archivos a PHP)
+
     uploader(file);
+
+    // Eliminara la bara de progreso y el span
+
     setTimeout(() => {
       $main.removeChild($progress)
       $main.removeChild($span)
