@@ -4,12 +4,12 @@ const d = document,
 
 
 const uploader = (file) => {
-  // Percibe un archivo para que sea usado en el envio AJAX
+
 
   const xhr = new XMLHttpRequest(),
-        formData = new FormData(); // Este objeto permite compilar un formulario para ser enviado a AJAX
+        formData = new FormData();
 
-  formData.append("file", file); // Permite enviar el archivo agregandolo a una variable creado dentro del objeto formData
+  formData.append("file", file);
 
   xhr.addEventListener("readystatechange", e => {
     if (xhr.readyState !== 4) return;
@@ -24,20 +24,47 @@ const uploader = (file) => {
     }
   })
 
-  xhr.open("POST", "assets/uploader.php"); // Esta es la ruta donde se enviara los archivos a la ruta del servidor
+  xhr.open("POST", "assets/uploader.php");
 
-  xhr.setRequestHeader("enc-type", "multipart/form-data"); // Esta cabecera podra permiter el envio de los datos de tipo binario
+  xhr.setRequestHeader("enc-type", "multipart/form-data");
 
-  xhr.send(formData) // Enviamos los datos
+  xhr.send(formData)
 }
 
+const progressUpload = (file) => {
+  const $progress = d.createElement('progress'),
+        $span = d.createElement('span');
+
+  $progress.value = 0;
+  $progress.max = 100;
+
+  $main.insertAdjacentElement('beforeend', $progress)
+  $main.insertAdjacentElement('beforeend', $span)
+
+  const fileReader = new FileReader();
+  fileReader.readAsDataURL(file);
+
+  fileReader.addEventListener('progress', e => {
+    let progress = parseInt((e.loaded * 100) / e.total);
+    $progress.value = progress;
+    $span.innerHTML = `<b>${file.name} - ${progress}%</b>`
+  })
+
+  fileReader.addEventListener('loadend', e => {
+    uploader(file);
+    setTimeout(() => {
+      $main.removeChild($progress)
+      $main.removeChild($span)
+      $files.value = '';
+    }, 3000 )
+  })
+}
 
 d.addEventListener("change", e => {
   if(e.target === $files){
 
     const files = Array.from(e.target.files)
-    // Toca convertir este objeto a un array para que sea reconocideo por el forEach
 
-    files.forEach( el => uploader(el))
+    files.forEach( el => progressUpload(el))
   }
 })
