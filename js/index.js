@@ -1,8 +1,8 @@
-//--------------------------- Ejercicio DOM ------- ----------------
+//-------------------------- Ejercicio DOM -----------------------
 
 import hamburguerMenu from "./modules/menu_ambuguesa.js";
 import { alarm, digitalClock } from "./modules/reloj_alarma.js";
-
+import { shortcuts } from "./modules/teclado.js";
 
 const d = document;
 
@@ -11,3 +11,7 @@ d.addEventListener('DOMContentLoaded', e => {
 	digitalClock('#hora', '#iniciar_reloj', '#detener_reloj')
 	alarm('assets/audio/alarmaDeGuerra.mp3', '#iniciar_alarma', '#detener_alarma')
 })
+
+
+
+d.addEventListener('keydown', e => shortcuts(e))
