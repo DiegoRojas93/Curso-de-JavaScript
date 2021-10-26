@@ -149,3 +149,27 @@
 	opacity: 0;
 }
 
+/* ********************* DarkThemeButton ********************** */
+
+.dark-theme-btn{
+	position: fixed;
+	z-index: 999;
+	bottom: 1vh;
+	left: 1vw;
+	width: 6rem;
+	height: 6rem;
+	background-color: var(--main-color);
+	border-radius: 50%;
+	font-size: 2rem;
+	font-weight: bold;
+	cursor: pointer;
+	outline: 0;
+	border: 0;
+
+	transition: all 0.3s ease-out;
+}
+
+.dark-theme-btn:hover, .dark-mode{
+	background-color: var(--second-color);
+	color: var(--main-color);
+}
