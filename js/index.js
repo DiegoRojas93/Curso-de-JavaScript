@@ -1,35 +1,26 @@
 //-----------------------------DWEB API´s-------------------------
 
 
-// DOM: stopPropagation & preventDefault
+// DOM: Delegación de Eventos
 
-  //stopPropagation()
 
-  const $divEventos = document.querySelectorAll('.eventos-flujo div');
+function flujoEventos(e) {
+	console.log(`Hola te saluda el div ${this}, el click lo origino el div ${e.target.className}`);
+}
 
-  function flujoEventos(e) {
-    console.log(`Hola te saluda el div ${this.className}, el click lo origino el div ${e.target.className}`);
 
-    e.stopPropagation(); //elimina la propagacion
-  }
 
-  console.log($divEventos);
+document.addEventListener('click', (e)=>{
+	console.log(`Click en: `, e.target);
 
-  $divEventos.forEach(div => {
+	// matches() comprueba si el Element sería seleccionable por el selector CSS
 
-    div.addEventListener('click', flujoEventos, true)
-  });
+	if (e.target.matches('.eventos-flujo div')) {
+		flujoEventos(e)
+	}
 
-  // preventDefault
-
-  const $linkEventos = document.querySelector('.eventos-flujo a')
-
-  console.log($linkEventos);
-
-  $linkEventos.addEventListener('click', (e) => {
-
-    e.preventDefault(); // detiene la ejecucion de abrir una nueva pestaña sin recargar la página
-
-    alert('Hola, soy Diego')
-
-  })
+	if (e.target.matches('.eventos-flujo a')) {
+		alert(`Hola soy Diego Rojas`)
+		e.preventDefault()
+	}
+})
