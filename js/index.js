@@ -1,28 +1,35 @@
 //-----------------------------DWEB API´s-------------------------
 
 
-// DOM: Flujo de Eventos (Burbuja y Captura)
+// DOM: stopPropagation & preventDefault
 
-const $divEventos = document.querySelectorAll('.eventos-flujo div');
+  //stopPropagation()
 
-function flujoEventos(e) {
-  console.log(`Hola te saluda el div ${this.className}, el click lo origino el div ${e.target.className}`);
-}
+  const $divEventos = document.querySelectorAll('.eventos-flujo div');
 
-console.log($divEventos);
+  function flujoEventos(e) {
+    console.log(`Hola te saluda el div ${this.className}, el click lo origino el div ${e.target.className}`);
 
-$divEventos.forEach(div => {
+    e.stopPropagation(); //elimina la propagacion
+  }
 
-  // fase de burbuja
-  // div.addEventListener('click', flujoEventos, false)
+  console.log($divEventos);
 
-  // fase de capture
-  // div.addEventListener('click', flujoEventos, true)
+  $divEventos.forEach(div => {
 
-  // pasando una objeto
-  div.addEventListener('click', flujoEventos, {
+    div.addEventListener('click', flujoEventos, true)
+  });
 
-    capture: false,          // tipo de fase
-    once: true               // ejecutalo una sola vez
+  // preventDefault
+
+  const $linkEventos = document.querySelector('.eventos-flujo a')
+
+  console.log($linkEventos);
+
+  $linkEventos.addEventListener('click', (e) => {
+
+    e.preventDefault(); // detiene la ejecucion de abrir una nueva pestaña sin recargar la página
+
+    alert('Hola, soy Diego')
+
   })
-});
