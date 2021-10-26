@@ -1,7 +1,7 @@
 const d = document,
 			$table = d.querySelector('.crud-table'),
 			$form = d.querySelector('.crud-form'),
-			$title = d.querySelector('.crud-title'),
+			$title = d.querySelector('#crud-title'),
 			$template = d.querySelector('#crud-template').content,
 			$fragment = d.createDocumentFragment();
 
@@ -28,10 +28,11 @@ const AJAX = ({method, url, success, error, data}) =>{
 
 	xhr.open(method || 'GET', url);
 
-	xhr.setRequestHeader('Content-Type', 'application-json')
+	xhr.setRequestHeader('Content-Type', 'application/json')
 
 	xhr.send(JSON.stringify(data));
 }
+
 
 
 const getAll = () => {
@@ -67,3 +68,64 @@ const getAll = () => {
 
 d.addEventListener('DOMContentLoaded', getAll)
 
+d.addEventListener('submit', e => {
+	if(e.target === $form){
+		console.log(e.target)
+		e.preventDefault();
+
+		if (!e.target.id.value) {
+			// create - POST
+
+			AJAX({
+				method: 'POST',
+				url: 'http://localhost:3001/santos',
+				success: (res) => location.reload(),
+				error: (err) => $form.insertAdjacentHTML('afterend', `<p><b>${err}</b></p>`),
+				data: {
+					nombre: e.target.nombre.value,
+					constelacion: e.target.constelacion.value
+				},
+			})
+		}else{
+			// Update - PUT
+
+			AJAX({
+				method: 'PUT',
+				url: `http://localhost:3001/santos/${e.target.id.value}`,
+				success: (res) => location.reload(),
+				error: (err) => $form.insertAdjacentHTML('afterend', `<p><b>${err}</b></p>`),
+				data: {
+					nombre: e.target.nombre.value,
+					constelacion: e.target.constelacion.value
+				},
+			})
+		}
+	}
+})
+
+d.addEventListener('click', e => {
+
+	// Editanto un recurso
+
+	if (e.target.matches('.edit')) {
+		$title.textContent= 'Editar Santo';
+		$form.nombre.value = e.target.dataset.name
+		$form.constelacion.value = e.target.dataset.constellation
+		$form.id.value = e.target.dataset.id
+	}
+
+	// Eliminando un recurso
+
+	if (e.target.matches('.delete')) {
+		let isDelete = confirm(`¿Estas seguro de eliminar el id ${e.target.dataset.id}?`)
+
+		if (isDelete) {
+			AJAX({
+				method: 'DELETE',
+				url: `http://localhost:3001/santos/${e.target.dataset.id}`,
+				success: (res) => location.reload(),
+				error: (err) => alert(err),
+			})
+		}
+	}
+})
