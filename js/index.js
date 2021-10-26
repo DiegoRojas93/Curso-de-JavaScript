@@ -1,26 +1,32 @@
 //-----------------------------WEB API´s-------------------------
 
-// El Dom
+// DOM: Nodos, Elementos y Selectores
 
-console.info(window.document)
-console.info(document)									// Nos trae el typo y todo el documento html
-console.info(document.doctype)					// Nos trae el typo de documento
-console.info(document.documentElement)	// Nos trae todo el documento
+// Los Nodos son aquellos diferente partes que tiene un documentos HTML y XML
 
-console.info(document.head)							// Nos trae todo el head del html
-console.info(document.charset)					// Nos trae el typo de caracteres que trabacamos en el documento, osea en UTF-8
-console.info(document.styleSheets)			// accedemos a una coleccion de las hojas de stylos
-console.info(document.title)						// Nos trae el titulo del documento
+// Los elementos (etiquetas) y los textos (contenidos de las equiquetas p, h1, etc) son el tipo de nodos que mas vamos a utilizar
 
-console.info(document.body)							// Nos trae todo el cuerpo del html
-console.info(document.scripts)					// accedemos a una coleccion de todos los scripts que usa el documento
+console.log(document.getElementsByTagName('li')); // traeme en una coleccion de todas las etiquetas que coincidan con cierto nombre.
 
-console.info(document.links)						// Nos trae una lista (No son aregglos) de todos los links que tiene el documento, como ofertas y propagandas.
-console.info(document.images)						// Nos trae una lista de las imagenes que usa el documento
-console.info(document.forms)						// accedemos a una coleccion que nos devuelve el documento
+console.log(document.getElementsByName('nombre')); // traeme en un NodeList de todos los nodos, que en su atributo name contenga el nombre que especifiquemos
 
-setTimeout(() => {
-	console.info(document.getSelection().toString())	// accedemos a una coleccion de toda la seleccion que hace el mause
-}, 3000);
+console.log(document.getElementsByClassName('card')); // traeme en una coleccion de todas las clases que tengan el nombre card.
 
-document.write(`<h1>Hola Mundo!</h1>`) // escribimos en el documento antes del cierre de la etiqueta body
+
+
+console.log(document.getElementById('menu')); // traeme en la etiqueta con el id que proporcionemos
+
+console.log(document.querySelector('#menu')); // traeme la etiqueta con el id, class ó etiqueta que proporcionemos
+console.log(document.querySelector('a'));			// // traeme la etiqueta primera etiqueta anchoir
+
+console.log(document.querySelectorAll('img')); // traeme en un NodeList de todos los nodos imgespecifiquemos
+console.log(document.querySelectorAll('#menu li')); // traeme en un NodeList de todas las etiquetas li que esten dentro de id #menu}
+
+
+
+
+console.log(document.getElementsByTagName('img').length)
+
+document.querySelectorAll('a').forEach((element) => {
+	console.log(element);
+});
