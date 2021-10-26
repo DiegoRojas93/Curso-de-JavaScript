@@ -1,45 +1,118 @@
 //-----------------------------DWEB API´s-------------------------
 
-//  DOM Traversing: Recorriendo el DOM
+// DOM: Creando Elementos y Fragmentos
 
-const $cards = document.querySelector('.cards');
+const $cards = document.querySelector('.cards')
 
-// métodos para los elementos
+// Creando Elementos
 
-	console.log($cards.parentElement);						// retorna el elemento padre
+	const $figure = document.createElement('figure')					// creando elementos HTML
+				$img = document.createElement('img')
+				$figcaption = document.createElement('figcaption')
 
-	console.log($cards.children);								// retorna en una coleccion todos los hojos de dicho elemento
 
-	console.log($cards.children[2]);							// retorna el elemento hijo que le indiquemos
+	$figure.classList.add('card')
 
-	console.log($cards.firstElementChild);				// retorna el primer elemento hijo
-
-	console.log($cards.lastElementChild);				// retorna el ultimo elemento hijo
-
-	console.log($cards.previousElementSibling);	// retorna el anterior elemento hermano
-
-	console.log($cards.nextElementSibling);			// retorna al siguiente elemento hermano
+	$img.setAttribute('src', 'https://placeimg.com/200/200/nature')
+	$img.setAttribute('alt', 'Nature')
 
 
 
-	console.log($cards.closest('div')); 					// retona el ancestro más cercano que le indiquemos en su parametro
+// Nodos de Texto
 
-	console.log($cards.closest('body'));
-
-	console.log($cards.children[3].closest('section'));
+	let text = document.createTextNode('Naturaleza')
 
 
 
-// métodos para los Nodos
+// Añadiendo hijos a los elementos
 
-console.log($cards.parentNode);				// retorna el Nodo padre
+	$figcaption.appendChild(text)
+	$figure.appendChild($img)
+	$figure.appendChild($figcaption)
+	$cards.appendChild($figure)
 
-console.log($cards.childNodes);				// retorna todos los nodos hijos del elemento
 
-console.log($cards.firstChild);				// retorna el primer nodo: la tabulacion antes encontrar el primer Elemento
 
-console.log($cards.lastChild)					// retorna el ultimo nodo: la tabulacion antes de salir del elemento padre
 
-console.log($cards.previousSibling);	// retorna el nodo anterior del elemento padre: la tabulacion antes del elemento
 
-console.log($cards.nextSibling);			// retorna el siguiente nodo del elemento padre: la tabulacion despues del elemento
+
+
+
+const $figure2 = document.createElement('figure')
+
+$figure2.innerHTML = `
+	<img src="https://placeimg.com/200/200/nature" alt="Nature" />
+	<figcaption>Nature</figcaption>
+`
+
+$figure2.classList.add('card')
+
+$cards.appendChild($figure2)
+
+
+
+
+
+
+// creando elementos dinamicamente
+
+// Opcion 1
+
+	const ESTACIONES = ['Primavera', 'Verano', 'Otoño', 'Invierno']
+				$ul = document.createElement('ul')
+
+	document.write(`<h3>Estaciones del año</h3>`)
+
+	ESTACIONES.forEach( estacion => {
+		const $li = document.createElement('li')
+		$li.innerHTML = estacion
+		$ul.appendChild($li)
+	});
+
+	document.body.appendChild($ul)
+
+
+
+// Opcion 2
+
+	const CONTINENTES = ['Africa', 'América', 'Asia', 'Europa', 'Oceania']
+				$ul2 = document.createElement('ul')
+
+	document.write('<h3>Continentes del Mundo</h3>')
+
+	$ul2.innerHTML = ''		// Establecemos la sintaxis vacia para agregar text HTML
+
+	CONTINENTES.forEach(continente => $ul2.innerHTML += `<li>${continente}</li>`);
+
+	document.body.appendChild($ul2)
+
+
+
+// Fragmentos
+
+	const MESES = ['Enero',
+		'Febrero',
+		'Marzo',
+		'Abril',
+		'Mayo',
+		'Junio',
+		'Julio',
+		'Agosto',
+		'Septiembre',
+		'Octubre',
+		'Noviembre',
+		'Diciembre'
+	]
+				$ul3 = document.createElement('ul')
+				$fragment =  document.createDocumentFragment();
+
+
+	MESES.forEach(mes => {
+		const $li = document.createElement('li')
+		$li.innerHTML = mes
+		$fragment.appendChild($li)
+	});
+
+	document.write(`<h3>Meses del año</h3>`)
+
+	document.body.appendChild($fragment)
