@@ -4,10 +4,66 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>CRUD API REST AJAX</title>
 </head>
 <body>
-	
+	<h1>CRUD API REST AJAX</h1>
+	<section id="crud">
+		<article>
+			<h2 id="crud-title">Agregar Santo</h2>
+			<form class="crud-form">
+
+				<input
+					type="text"
+					name="nombre"
+					placeholder="nombre"
+					required
+				/>
+
+				<br>
+
+				<input
+					type="text"
+					name="constelacion"
+					placeholder="constelación"
+					required
+				/>
+
+				<br>
+
+				<input type="submit" value="Enviar">
+
+				<input type="hidden" name="id">
+
+			</form>
+		</article>
+
+		<article>
+			<h2>Ver Santos</h2>
+			<table>
+
+				<thead>
+					<th>Nombre</th>
+					<th>Contelación</th>
+					<th>Acciones</th>
+				</thead>
+
+				<tbody></tbody>
+
+			</table>
+		</article>
+	</section>
+
+	<template id="crud-template">
+		<tr>
+			<td class="name"></td>
+			<td class="constellation"></td>
+			<td>
+				<button class="edit"></button>
+				<button class="delete"></button>
+			</td>
+		</tr>
+	</template>
 	<script src="./index.js"></script>
 </body>
 </html>
