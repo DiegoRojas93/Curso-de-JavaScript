@@ -1,43 +1,43 @@
 const d = document,
-      $main = d.querySelector('main');
+      $main = d.querySelector("main"),
+      $files = d.getElementById("files");
 
-const getHTML = (options) => {
-  let { url, success, error } = options;
 
-  const xhr = new XMLHttpRequest;
+const uploader = (file) => {
+  // Percibe un archivo para que sea usado en el envio AJAX
 
-  xhr.addEventListener('readystatechange', e => {
+  const xhr = new XMLHttpRequest(),
+        formData = new FormData(); // Este objeto permite compilar un formulario para ser enviado a AJAX
+
+  formData.append("file", file); // Permite enviar el archivo agregandolo a una variable creado dentro del objeto formData
+
+  xhr.addEventListener("readystatechange", e => {
     if (xhr.readyState !== 4) return;
 
     if (xhr.status >= 200 && xhr.status < 300) {
-      let html = xhr.response
-      success(html)
+      let json = JSON.parse(xhr.responseText)
+      console.log(json);
+
     } else {
-      let message = xhr.responseText || 'Ocurrio un error';
-      error(message)
+      let message = xhr.statusText || 'Ocurrió un error';
+      console.log(`Error ${xhr.status}: ${message}`);
     }
   })
 
-  xhr.open('GET', url)
-  xhr.setRequestHeader('Content-Type', 'text/html; charset=utf-8')
-  xhr.send();
+  xhr.open("POST", "assets/uploader.php"); // Esta es la ruta donde se enviara los archivos a la ruta del servidor
+
+  xhr.setRequestHeader("enc-type", "multipart/form-data"); // Esta cabecera podra permiter el envio de los datos de tipo binario
+
+  xhr.send(formData) // Enviamos los datos
 }
 
-d.addEventListener('DOMContentLoaded', e => {
-  getHTML({
-    url: './assets/home.html',
-    success: (res) => $main.innerHTML = res,
-    error: (err) => $main.innerHTML = err,
-  })
-});
 
-d.addEventListener('click', e => {
-  if (e.target.matches('.menu a')) {
-    e.preventDefault();
-    getHTML({
-      url: e.target.href,
-      success: (res) => $main.innerHTML = res,
-      error: (err) => $main.innerHTML = err,
-    })
+d.addEventListener("change", e => {
+  if(e.target === $files){
+
+    const files = Array.from(e.target.files)
+    // Toca convertir este objeto a un array para que sea reconocideo por el forEach
+
+    files.forEach( el => uploader(el))
   }
 })
