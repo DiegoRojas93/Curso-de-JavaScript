@@ -1,4 +1,4 @@
-const d = document;
+const d  = document;
 
 export function digitalClock(clock, btnPlay, btnStop) {
 
@@ -19,6 +19,32 @@ export function digitalClock(clock, btnPlay, btnStop) {
 			clearInterval(clockTempo)
 			d.querySelector(btnPlay).disabled = false;
 			d.querySelector(clock).innerHTML= null;
+		}
+	})
+}
+
+
+
+export function alarm(sound, btnPlay, btnStop) {
+	let alarmaTempo;
+	const $alarm = d.createElement('audio')
+	$alarm.src = sound
+
+	d.addEventListener('click', e => {
+
+		if (e.target.matches(btnPlay)) {
+			e.target.disabled = true;
+
+			alarmaTempo = setTimeout(() => {
+				$alarm.play();
+			}, 0);
+		}
+
+		if (e.target.matches(btnStop)) {
+			clearTimeout(alarmaTempo);
+			$alarm.pause();
+			$alarm.currentTime = 0
+			d.querySelector(btnPlay).disabled = false;
 		}
 	})
 }
