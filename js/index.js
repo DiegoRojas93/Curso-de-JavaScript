@@ -1,86 +1,60 @@
 //-----------------------------DWEB API´s-------------------------
 
-// DOM: Atributos y Data-attibutes
+// DOM: Estilos y Custom Properties
 
-const $DOMElement = document.documentElement
-const $linkDOM = document.querySelector('.link-dom')
+const	$html = document.documentElement
+			$body = document.body
+			$linkDOM = document.querySelector('.link-dom');
 
-// Atributos
+// Estilos
 
-	// Validando la existencia de un atributo
+	// obteniendo los estilos
 
-	console.log($linkDOM.hasAttribute('href'))
-	console.log($linkDOM.hasAttribute('lang'))
+	console.log(window.getComputedStyle($linkDOM));	// Mapea toda las propiedades con y sin customizar
+	console.log(getComputedStyle($linkDOM).getPropertyValue('color'));	// obtiene el valor de una propiedad en el estilo del un elemento
 
-
-
-	// obteniendo a los atributos
-
-	console.log($DOMElement.lang);									// Con la notacion del punto
-	console.log($DOMElement.getAttribute('lang'));	// Usando el método .getAtribute()
-
-	console.log($linkDOM.href);											// Con la notacion del punto
-	console.log($linkDOM.getAttribute('href'));			// Usando el método .getAtribute()
+	console.log($linkDOM.style.color);						// obteniendo un estilo en particular
+	console.log($linkDOM.style);									// Todos los estilos que es tan customizados
+	console.log($linkDOM.style.backgroundColor);	// obteniendo un estilo en particular
 
 
+	// Estableciendo valores
+	console.log(getComputedStyle($linkDOM).getPropertyValue('text-decoration'));
 
-	// estableciendo los valores a los atributos
+	$linkDOM.style.setProperty("text-decoration", "none")		// estableciendo la propiedad text-decoration
 
-	$DOMElement.lang = 'en'									// Con la notacion del punto
-	console.log($DOMElement.lang);
-
-	$DOMElement.setAttribute('lang', 'es')	// Usando el metodo .setAttribute()
-	console.log($DOMElement.lang);
-
-
-	console.log($linkDOM);
-	$linkDOM.setAttribute('target', '_blank')
-	$linkDOM.setAttribute('rel', 'noopener')	// evitamos que nuestra ventana que abrimos sea dependiente de otra, ecitando asi el hackeo
-	$linkDOM.setAttribute('href', 'https://youtube.com/jonmircha')
-	console.log($linkDOM);
+	console.log(getComputedStyle($linkDOM).getPropertyValue('text-decoration'));
 
 
 
-	// eliminando atributos
+	console.log($linkDOM.style.display);
 
-	console.log($linkDOM.hasAttribute('rel'))
-	$linkDOM.removeAttribute('rel')							// remueve el atributo rel
-	console.log($linkDOM.hasAttribute('rel'))
+	$linkDOM.style.display = 'block'			// estableciendo la propiedad display
 
+	console.log($linkDOM.style.display);
 
-
-
-
-
-// DATA Attributes
-
-	// Validando la existencia de un Data-Attributes
-
-	console.log($linkDOM.hasAttribute('rel'))
-	console.log($linkDOM.hasAttribute('data-id'))
+	$linkDOM.style.width = '50%'
+	$linkDOM.style.textAlign = 'center'
+	$linkDOM.style.marginLeft = 'auto'
+	$linkDOM.style.marginRight = 'auto'
+	$linkDOM.style.padding = '1rem'
+	$linkDOM.style.borderRadius = '1.5rem'
 
 
+	// Custom Properties
 
-	// obteniendo los data-Attributes
+		// obteniendo los estilos
 
-	console.log($linkDOM.dataset);															// obteniendo todos los Data-Atributes
-	console.log($linkDOM.dataset.description);									// obteniendo un Data-Atributes con dataset
-	console.log($linkDOM.getAttribute('data-description'));			// obteniendo un Data-Atributes usando el método .getAttribute()
+		let Color1 = getComputedStyle($html).getPropertyValue("--Color-Dark")
+				Color2 = getComputedStyle($html).getPropertyValue('--Color-Yellow')
 
+		console.log(Color1, Color2);
 
+		$body.style.backgroundColor = Color1
+		$body.style.color = Color2
 
-	// creando un Data-Attribute o cambiando su valor
+		// modificando los estilos
 
-	$linkDOM.setAttribute('data-description', 'Modelo de objeto del Documento')	// creando un Data-Attribute
-	console.log($linkDOM.dataset.description);
+		$html.style.setProperty('--Color-Dark', '#000')
 
-	$linkDOM.dataset.description = 'Sucribete a mi canal y comparte'							// cambiando el valor de un Data-Attribute
-	console.log($linkDOM.dataset.description);
-
-
-
-	// eliminando un Data-Attribute
-
-	console.log($linkDOM.hasAttribute('data-id'))
-	$linkDOM.removeAttribute('data-id')						// Eliminando un Data-Attribute
-	console.log($linkDOM.hasAttribute('data-id'))
+		$body.style.setProperty('background-color', varDarkColor)
