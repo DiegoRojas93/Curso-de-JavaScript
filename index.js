@@ -1,6 +1,7 @@
 const d = document,
       $main = d.querySelector("main"),
-      $files = d.getElementById("files");
+      $dropZone = d.querySelector(".drop-zone")
+      // $files = d.getElementById("files");
 
 
 const uploader = (file) => {
@@ -46,8 +47,6 @@ const progressUpload = (file) => {
 
   fileReader.addEventListener('progress', e => {
 
-    // Se daran valores de progreso a la barra y un  texto al span
-
     let progress = parseInt((e.loaded * 100) / e.total);
     $progress.value = progress;
     $span.innerHTML = `<b>${file.name} - ${progress}%</b>`
@@ -55,25 +54,33 @@ const progressUpload = (file) => {
 
   fileReader.addEventListener('loadend', e => {
 
-    // Ejecutaremos la funcion uploader (Subira los archivos a PHP)
-
     uploader(file);
-
-    // Eliminara la bara de progreso y el span
 
     setTimeout(() => {
       $main.removeChild($progress)
       $main.removeChild($span)
-      $files.value = '';
     }, 3000 )
   })
 }
 
-d.addEventListener("change", e => {
-  if(e.target === $files){
+$dropZone.addEventListener("dragover", e => {
+  e.preventDefault();
+  e.stopPropagation();
+  e.target.classList.add('is-active');
+})
 
-    const files = Array.from(e.target.files)
+$dropZone.addEventListener("dragleave", e => {
+  e.preventDefault();
+  e.stopPropagation();
+  e.target.classList.remove('is-active');
+})
 
-    files.forEach( el => progressUpload(el))
-  }
+$dropZone.addEventListener("drop", e => {
+  console.log('drop: ', e);
+  e.preventDefault();
+  e.stopPropagation();
+  e.target.classList.remove('is-active');
+
+  const files = Array.from(e.dataTransfer.files)
+  files.forEach(el => progressUpload(el));
 })
