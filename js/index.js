@@ -1,37 +1,34 @@
 //-----------------------------DWEB API´s-------------------------
 
 
-// DOM: manejadores de eventos
+// DOM: Eventos con Parámetros y Remover Eventos
 
-// Evento con atributo HTML
+  // Eventos con parametros
 
-function holaMundo() {    // Event Handler
-	alert('Hola Mundo!');
-	console.log(event);
-	console.log(`Tipo de evento`, event.type);
-	console.log(`Elemento que origino el evento`, event.target);
-}
+  const $eventoMultiple = document.querySelector('#evento-multiple')
 
-// Evento Semantico
-const $eventoSemantico = document.getElementById('evento-semantico');
-$eventoSemantico.onclick = holaMundo;
+  function saludar(nombre = 'Desconoci@') {
+    alert(`Hola ${nombre}`)
+    console.log(event);
+  }
 
-// no podemos aginar mas de una funcion a un mismo evento
-
-$eventoSemantico.onclick = function (e) {
-	console.log(`Hola mundo manegador de eventos semántico`);
-	console.log(e);
-	console.log(event);
-};
+  $eventoMultiple.addEventListener('click', () => {
+    saludar();
+    saludar('Diego');
+  })
 
 
-// manejador multiples: addEventListener permite definir diferentes funciones a un mismo elemento
 
-const $eventoMultiple = document.querySelector('#evento-multiple')
 
-$eventoMultiple.addEventListener('click', holaMundo)
-$eventoMultiple.addEventListener('click', (e)=>{
-	console.log(e);
-	console.log(e.type);
-	console.log(e.target);
-})
+  // Removiendo el Evento
+
+  const $eventoRemover = document.querySelector('#evento-remover');
+
+  const removerDobleClick = (e) => {
+    alert(`Removiendo el evento de tipo ${e.type}`)
+    console.log(e);
+    $eventoRemover.removeEventListener('dblclick', removerDobleClick)
+    $eventoRemover.disabled = true
+  }
+
+  $eventoRemover.addEventListener('dblclick', removerDobleClick);
