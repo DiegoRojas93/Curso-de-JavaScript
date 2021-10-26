@@ -32,6 +32,7 @@
 	left: 0;
 	right: 0;
 	width: 100%;
+	overflow-y: auto; /* permite tener un scroll en el panel o en aside */
 	background-color: var(--second--modal-color);
 	opacity: 0;
 	visibility: hidden;

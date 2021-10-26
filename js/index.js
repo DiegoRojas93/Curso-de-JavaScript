@@ -11,6 +11,8 @@ import { moveBall, shortcuts } from "./modules/teclado.js";
 import darkTheme from "./modules/tema_oscuro.js";
 import networkStatus from "./modules/deteccion_red.js";
 import webCam from "./modules/deteccion_webcam.js";
+import geolocation from "./modules/geolocalizacion.js";
+import getGeolocation from "./modules/geolocalizacion.js";
 
 const d = document;
 
@@ -37,8 +39,9 @@ d.addEventListener('DOMContentLoaded', e => {
 			);
 		responsiveTester('responsive-tester')
 		userDeviceInfo('user-device');
-
 		webCam('webcam')
+
+		getGeolocation('geolocation')
 	})
 
 d.addEventListener('keydown', e =>{
