@@ -1,24 +1,45 @@
 //-----------------------------DWEB API´s-------------------------
 
-// DOM: DOM: Texto y HTML
+//  DOM Traversing: Recorriendo el DOM
 
-const $parrafoDOM = document.getElementById('que-es')
+const $cards = document.querySelector('.cards');
 
-let text = `
-	<p>
-		El modelo de Objetos del Domcumento (<b><i>DOM => document Object Model</i></b>) es un API para documentos HTML y XML
-	</p>
-	<P>
-		Éste proveé una representacion estructural del documento, permitiendo modificar su contenido y representacion visual mediate el código JS.
-	</P>
-	<P>
-		<mark>
-			El DOM no es parte de la especificación de JavaScript , es na API para los navegadores
-		</mark>
-	</P>
-`;
+// métodos para los elementos
 
-$parrafoDOM.innerText = text // contiene identacion y no diferencia etiquetas HTML
-$parrafoDOM.textContent = text	// NO contiene identacion y no diferencia etiquetas HTML
-$parrafoDOM.innerHTML = text	// renderiza el texto identificando las etiquetas HTML
-$parrafoDOM.outerHTML = text	// evitar crear más elementos dentro en la etiqueta p
+	console.log($cards.parentElement);						// retorna el elemento padre
+
+	console.log($cards.children);								// retorna en una coleccion todos los hojos de dicho elemento
+
+	console.log($cards.children[2]);							// retorna el elemento hijo que le indiquemos
+
+	console.log($cards.firstElementChild);				// retorna el primer elemento hijo
+
+	console.log($cards.lastElementChild);				// retorna el ultimo elemento hijo
+
+	console.log($cards.previousElementSibling);	// retorna el anterior elemento hermano
+
+	console.log($cards.nextElementSibling);			// retorna al siguiente elemento hermano
+
+
+
+	console.log($cards.closest('div')); 					// retona el ancestro más cercano que le indiquemos en su parametro
+
+	console.log($cards.closest('body'));
+
+	console.log($cards.children[3].closest('section'));
+
+
+
+// métodos para los Nodos
+
+console.log($cards.parentNode);				// retorna el Nodo padre
+
+console.log($cards.childNodes);				// retorna todos los nodos hijos del elemento
+
+console.log($cards.firstChild);				// retorna el primer nodo: la tabulacion antes encontrar el primer Elemento
+
+console.log($cards.lastChild)					// retorna el ultimo nodo: la tabulacion antes de salir del elemento padre
+
+console.log($cards.previousSibling);	// retorna el nodo anterior del elemento padre: la tabulacion antes del elemento
+
+console.log($cards.nextSibling);			// retorna el siguiente nodo del elemento padre: la tabulacion despues del elemento
