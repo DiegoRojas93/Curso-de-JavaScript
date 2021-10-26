@@ -21,9 +21,9 @@
       "constelacion": "Andrómeda"
     },
     {
-      "id": 5,
       "nombre": "Ikki",
-      "constelacion": "Fenix"
+      "constelacion": "Fenix",
+      "id": 5
     }
   ],
   "dioses": [
