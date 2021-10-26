@@ -4,6 +4,7 @@ import scrollTopButton from "./modules/boton_scroll.js";
 import countDown from "./modules/countdown.js";
 import hamburguerMenu from "./modules/menu_ambuguesa.js";
 import responsiveTester from "./modules/prueba_responsive.js";
+import userDeviceInfo from "./modules/deteccion_dispositivos.js";
 import { alarm, digitalClock } from "./modules/reloj_alarma.js";
 import responsiveMedia from "./modules/responsive_design.js";
 import { moveBall, shortcuts } from "./modules/teclado.js";
@@ -15,6 +16,8 @@ const d = document;
 
 
 d.addEventListener('DOMContentLoaded', e => {
+	userDeviceInfo('user-device')
+
 	hamburguerMenu('.panel-btn', '.panel', '.menu a');
 	digitalClock('#hora', '#iniciar_reloj', '#detener_reloj')
 	alarm('assets/audio/alarmaDeGuerra.mp3', '#iniciar_alarma', '#detener_alarma')
@@ -35,6 +38,7 @@ d.addEventListener('DOMContentLoaded', e => {
 	);
 
 	responsiveTester('responsive-tester')
+
 })
 
 d.addEventListener('keydown', e =>{
