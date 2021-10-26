@@ -1,198 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-	<!-- lang es el atributo que especifica el ideoma del documento HTML-->
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.1.3/hamburgers.css" integrity="sha512-W4KOSUNkQhX7JkalSiTkwAIoqsAvxDdgRc/WAa5U0R2TKTpHnNZuf9AiBk8InN4GCAMwer+O9fe4ThxIQFkOGQ==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="./css/styleConfigurations.css">
+	<link rel="stylesheet" href="./css/style.css">
 
-	<style>
-		:root {
-			--Color-Yellow: #F7DF1E;
-			--Color-Dark: #222;
-		}
-
-
-		.cards{
-			border: thin solid var(--Color-Dark);
-			padding: 1rem;
-		}
-
-		.card {
-			display: inline-block;
-			background-color: var(--Color-Dark);
-			color: var(--Color-Yellow);
-		}
-
-		.newCard{
-			border: 1px solid red;
-		}
-
-		.card figcaption{
-			padding: 1rem
-		}
-
-		.rotate-45{
-			transform: rotate(45deg);
-		}
-
-		.rotate-135{
-			transform: rotate(135deg);
-		}
-		.opacity-80{
-			opacity: 0.8;
-		}
-
-		.sepia{
-			filter: sepia(1)
-		}
-
-		.eventos-flujo div {
-			padding: 4rem;
-			font-size: 2rem;
-			text-align: center;
-		}
-
-		.uno{
-			background-color: yellow;
-		}
-
-		.dos{
-			background-color: gold;
-		}
-
-		.tres{
-			background-color: lightyellow;
-		}
-	</style>
-	<title>Fundamentos JavaScript</title>
+	<title>Ejercicios del DOM</title>
 </head>
 <body>
-	<!-- <h1>WEB APIs</h1>
-	<h2>DOM: Document Object Model</h2>
-	<h2>BOM: Browser Object Model</h2>
-	<h2>CSSOM: CSS Object Model</h2>
-	<h2>WEB APIs</h2>
-	<ul>
-		<li>Eventos</li>
-		<li>Forms</li>
-		<li>AJAX - Fetch</li>
-		<li>History</li>
-		<li>Web Storage</li>
-		<li>Geolocation</li>
-		<li>Drag & Drop</li>
-		<li>Indexed DB</li>
-		<li>Canvas</li>
-		<li>MathMedia</li>
-		<li>etc...</li>
-		<br />
-		<hr />
-		</br />
-	</ul> -->
 
-	<h3>Manejo del DOM</h3>
-	<P id="que-es">
-		Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate sequi animi expedita ab assumenda, saepe cum esse ratione, earum laudantium iure totam eum at consequatur doloribus! Quidem culpa nulla in.
-	</P>
+	<header class="header">
+		<h1>Ejecicios del DOM</h1>
+	</header>
 
-	<nav id="menu">
-		<ul>
-			<li><a href="#">Section 1</a></li>
-			<li><a href="#">Section 2</a></li>
-			<li><a href="#">Section 3</a></li>
-			<li><a href="#">Section 4</a></li>
-			<li><a href="#">Section 5</a></li>
-		</ul>
-	</nav>
+	<button class="panel-btn hamburger hamburger--3dxy" type="button">
+		<span class="hamburger-box">
+			<span class="hamburger-inner"></span>
+		</span>
+	</button>
 
-	<input type="text" name='nombre' placeholder="Nombre" />
-	<a
-		class='link-dom'
-		href="dom.html"
-		data-description='Document Object Model'
-		data-id='1'
-		style='background-color: #F7DF1E; color: #222;'
+	<aside class="panel">
+		<nav class="menu">
+			<a href="#seccion1">Sección 1</a>
+			<a href="#seccion2">Sección 2</a>
+			<a href="#seccion3">Sección 3</a>
+			<a href="#seccion4">Sección 4</a>
+			<a href="#seccion5">Sección 5</a>
+		</nav>
+	</aside>
 
-	>DOM</a>
-	<section class="cards">
-		<figure class="card">
-			<img src="https://placeimg.com/200/200/tech" alt="Tech" />
-			<figcaption>Tech</figcaption>
-		</figure>
+	<main>
+		<section id="seccion1" class="section">
+			<h2>Sección 1</h2>
+		</section>
+		<section id="seccion2" class="section">
+			<h2>Sección 2</h2>
+		</section>
+		<section id="seccion3" class="section">
+			<h2>Sección 3</h2>
+		</section>
+		<section id="seccion4" class="section">
+			<h2>Sección 4</h2>
+		</section>
+		<section id="seccion5" class="section">
+			<h2>Sección 5</h2>
+		</section>
+	</main>
 
-		<figure class="card card-2">
-			<img src="https://placeimg.com/200/200/animals" alt="Animals" />
-			<figcaption>Animals</figcaption>
-		</figure>
-
-		<figure class="card">
-			<img src="https://placeimg.com/200/200/people" alt="Peolple" />
-			<figcaption>People</figcaption>
-		</figure>
-
-		<figure class="card">
-			<img src="https://placeimg.com/200/200/arch" alt="Arch" />
-			<figcaption>Arch</figcaption>
-		</figure>
-		<figure class="card">
-			<img src="https://placeimg.com/200/200/nature" alt="nature" />
-			<figcaption>Nature</figcaption>
-		</figure>
-	</section>
-
-	<h3>Eventos en JavaScript</h3>
-	<h3>Manejadores de eventos</h3>
-
-	<button onclick="holaMundo()">Evento con atributo HTML</button>
-
-	</br>
-	</br>
-
-	<button id='evento-semantico'>Evento con manejador semántico</button>
-
-	</br>
-	</br>
-
-	<button id='evento-multiple'>Evento con manejador multiple</button>
-
-	</br>
-	</br>
-
-	<button id='evento-remover'>Removiendo eventos con manejadores multiples</button>
-
-	</br>
-	</br>
-
-	<h4>Flujo de Eventos</h4>
-
-	<section class="eventos-flujo">
-		<div class="uno">
-			1
-			<div class="dos">
-				2
-				<div class="tres">
-					3
-					<a href="https://jonmircha.com/" target="_blank" rel='noopener'>JonMircha.com</a>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<h3 style="width: 2000px;">Manejo del BOM</h3>
-
-	</br>
-	</br>
-
-	<h3 style="width: 2000px;">BOM: Métodos</h3>
-
-	<button id="abrir-ventana">Abrir Ventana</button>
-	<br></br>
-
-	<button id="cerrar-ventana">Cerrar Ventana</button>
-	<br></br>
-
-	<button id="imprimir-ventana">Imprimir Ventana</button>
-
-	<script src="./js/index.js" ></script>
-
+	<script src="./js/index.js" type="module"></script>
 </body>
 </html>

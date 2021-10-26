@@ -1,0 +1,43 @@
+/* ***********************  Reset Css  *********************** */
+
+:root{
+	--main-font: sans-serif;
+	--font-size: 16px;
+	--main-color: #f7df1e;
+	--second-color: #222;
+	--main--modal-color: rgba(247, 222, 30, 0.85 );
+	--second--modal-color: rgba(34, 34, 34, 0.85 );
+	--container-width: 1200px;
+}
+
+html{
+	box-sizing: border-box;
+	font-family: var(--main-font);
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after{
+	box-sizing: inherit;
+}
+
+h1{ font-size: 3.2rem}
+h2{ font-size: 2.4rem}
+h3{ font-size: 1.872rem}
+h4{ font-size: 1.6rem}
+h5{ font-size: 1.328rem}
+h6{ font-size: 1.072rem}
+
+p{ font-size: 1.6rem}
+
+body{
+	margin: 0;
+	overflow-x: hidden;
+}
+
+img{
+	max-width: 100%;
+	height: auto;
+}
