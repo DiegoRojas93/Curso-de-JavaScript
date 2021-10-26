@@ -118,3 +118,34 @@
 	border-radius: 50%;
 	background-color: var(--main-color);
 }
+
+/* ********************* scrollTopButton ********************** */
+
+.scroll-top-btn{
+	position: fixed;
+	z-index: 999;
+	bottom: 1vh;
+	right: calc(6rem + 4vh);
+	width: 6rem;
+	height: 6rem;
+	background-color: var(--main-color);
+	border-radius: 50%;
+	font-size: 2rem;
+	font-weight: bold;
+	cursor: pointer;
+	outline: 0;
+	border: 0;
+
+	transition: all 0.3s ease-out;
+}
+
+.scroll-top-btn:hover{
+	background-color: var(--second-color);
+	color: var(--main-color);
+}
+
+.hidden{
+	visibility: hidden;
+	opacity: 0;
+}
+
