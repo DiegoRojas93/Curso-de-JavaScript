@@ -7,6 +7,8 @@ import { alarm, digitalClock } from "./modules/reloj_alarma.js";
 import { moveBall, shortcuts } from "./modules/teclado.js";
 import darkTheme from "./modules/tema_oscuro.js";
 
+darkTheme('.dark-theme-btn', 'dark-mode')
+
 const d = document;
 
 
@@ -16,8 +18,6 @@ d.addEventListener('DOMContentLoaded', e => {
 	alarm('assets/audio/alarmaDeGuerra.mp3', '#iniciar_alarma', '#detener_alarma')
 	countDown('countdown', 'Sep 11, 2021 01:39:00', 'Feliz cumpleaños Diego')
 	scrollTopButton('.scroll-top-btn')
-
-	darkTheme('.dark-theme-btn', 'dark-mode')
 })
 
 d.addEventListener('keydown', e =>{
