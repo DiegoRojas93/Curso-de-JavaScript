@@ -103,7 +103,7 @@
 			$fetchAsync.innerHTML = `Error ${error.status}: ${message}`;
 
 		} finally{
-			c.log('Este código se ejecutará independientemente del resultado de la promesa Fetch')
+			// c.log('Este código se ejecutará independientemente del resultado de la promesa Fetch')
 		}
 	}
 
@@ -111,4 +111,38 @@
 
 	getData()
 
+})(document, window, console);
+
+
+((d, w, c) => {
+	const $axios = d.getElementById('axios'),
+				$fragment = d.createDocumentFragment();
+
+	axios.get('https://jsonplaceholder.typicode.com/users')
+		.then(res => {
+
+			let json = res.data
+
+			json.forEach(el => {
+				const $li = d.createElement('li')
+
+				$li.innerHTML = `${el.name} --- ${el.email} --- ${el.phone}`
+
+				$fragment.appendChild($li)
+			})
+
+
+
+			$axios.appendChild($fragment);
+
+		})
+		.catch(err => {
+
+			let message = err.response.statusText || 'Ocurrio un Error';
+
+			$axios.innerHTML = `Error ${err.response.status}: ${message}`;
+		})
+		.finally(() => {
+			c.log('Este código se ejecutará independientemente del resultado de la promesa Fetch')
+		})
 })(document, window, console);
