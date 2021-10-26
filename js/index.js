@@ -1,34 +1,28 @@
 //-----------------------------DWEB API´s-------------------------
 
 
-// DOM: Eventos con Parámetros y Remover Eventos
+// DOM: Flujo de Eventos (Burbuja y Captura)
 
-  // Eventos con parametros
+const $divEventos = document.querySelectorAll('.eventos-flujo div');
 
-  const $eventoMultiple = document.querySelector('#evento-multiple')
+function flujoEventos(e) {
+  console.log(`Hola te saluda el div ${this.className}, el click lo origino el div ${e.target.className}`);
+}
 
-  function saludar(nombre = 'Desconoci@') {
-    alert(`Hola ${nombre}`)
-    console.log(event);
-  }
+console.log($divEventos);
 
-  $eventoMultiple.addEventListener('click', () => {
-    saludar();
-    saludar('Diego');
+$divEventos.forEach(div => {
+
+  // fase de burbuja
+  // div.addEventListener('click', flujoEventos, false)
+
+  // fase de capture
+  // div.addEventListener('click', flujoEventos, true)
+
+  // pasando una objeto
+  div.addEventListener('click', flujoEventos, {
+
+    capture: false,          // tipo de fase
+    once: true               // ejecutalo una sola vez
   })
-
-
-
-
-  // Removiendo el Evento
-
-  const $eventoRemover = document.querySelector('#evento-remover');
-
-  const removerDobleClick = (e) => {
-    alert(`Removiendo el evento de tipo ${e.type}`)
-    console.log(e);
-    $eventoRemover.removeEventListener('dblclick', removerDobleClick)
-    $eventoRemover.disabled = true
-  }
-
-  $eventoRemover.addEventListener('dblclick', removerDobleClick);
+});
