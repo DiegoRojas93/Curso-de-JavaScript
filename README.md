@@ -1,3 +1,3 @@
-# Curso de JavaScript Con JonMircha
+# Curso de JavaScript
 
-JavaScript [jonmircha](https://aprendejavascript.org/).
+mi _archivo_javaScript.js
