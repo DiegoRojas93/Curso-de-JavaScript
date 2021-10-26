@@ -6,8 +6,7 @@ export default function scrollTopButton(btn) {
 
 
 	w.addEventListener('scroll', e => {
-		console.clear()
-		console.log(w.pageYOffset, d.documentElement.scrollTop);
+		// console.clear()
 
 		let scrollTop = w.pageYOffset || d.documentElement.scrollTop;
 

@@ -3,14 +3,14 @@ let x = 0,
 		y = 0;
 
 export function shortcuts(e) {
-	console.log(e);												// El evento
-	console.log(e.type);									// El tipo de evento
-	console.log(e.key);										// El nombre de la tecla
-	console.log(e.keyCode);								// código unico de la letra
-	console.log(`ctrl: ${e.ctrlKey}`);		// tecla ctrl
-	console.log(`alt: ${e.altKey}`);			// tecla alt
-	console.log(`shift: ${e.shiftKey}`);	// tecla shift
-	console.log('');
+	// console.log(e);												// El evento
+	// console.log(e.type);									// El tipo de evento
+	// console.log(e.key);										// El nombre de la tecla
+	// console.log(e.keyCode);								// código unico de la letra
+	// console.log(`ctrl: ${e.ctrlKey}`);		// tecla ctrl
+	// console.log(`alt: ${e.altKey}`);			// tecla alt
+	// console.log(`shift: ${e.shiftKey}`);	// tecla shift
+	// console.log('');
 
 	if(e.key === 'a' && e.altKey)alert(`Haz lanzado una alerta con el teclado`)
 
@@ -26,9 +26,9 @@ export function moveBall(e, ball, stage) {
 				limitsBall = $ball.getBoundingClientRect(),
 				limitsStage = $stage.getBoundingClientRect();
 
-	console.log(e.keyCode);
-	console.log(e.key);
-	console.log(limitsBall, limitsStage);
+	// console.log(e.keyCode);
+	// console.log(e.key);
+	// console.log(limitsBall, limitsStage);
 
 	switch (e.keyCode) {
 
