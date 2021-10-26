@@ -1,5 +1,6 @@
 //-------------------------- Ejercicio DOM -----------------------
 
+import countDown from "./modules/countdown.js";
 import hamburguerMenu from "./modules/menu_ambuguesa.js";
 import { alarm, digitalClock } from "./modules/reloj_alarma.js";
 import { moveBall, shortcuts } from "./modules/teclado.js";
@@ -10,10 +11,8 @@ d.addEventListener('DOMContentLoaded', e => {
 	hamburguerMenu('.panel-btn', '.panel', '.menu a');
 	digitalClock('#hora', '#iniciar_reloj', '#detener_reloj')
 	alarm('assets/audio/alarmaDeGuerra.mp3', '#iniciar_alarma', '#detener_alarma')
-	moveBall
+	countDown('countdown', 'Sep 11, 2021 01:39:00', 'Feliz cumpleaños Diego')
 })
-
-
 
 d.addEventListener('keydown', e =>{
 	shortcuts(e);
