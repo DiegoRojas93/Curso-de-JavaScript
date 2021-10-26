@@ -19,16 +19,13 @@
 					placeholder="nombre"
 					required
 				/>
-
 				<br>
-
 				<input
 					type="text"
 					name="constelacion"
 					placeholder="constelación"
 					required
 				/>
-
 				<br>
 
 				<input type="submit" value="Enviar">
@@ -40,12 +37,14 @@
 
 		<article>
 			<h2>Ver Santos</h2>
-			<table>
+			<table class="crud-table">
 
 				<thead>
-					<th>Nombre</th>
-					<th>Contelación</th>
-					<th>Acciones</th>
+					<tr>
+						<th>Nombre</th>
+						<th>Contelación</th>
+						<th>Acciones</th>
+					</tr>
 				</thead>
 
 				<tbody></tbody>
@@ -59,8 +58,8 @@
 			<td class="name"></td>
 			<td class="constellation"></td>
 			<td>
-				<button class="edit"></button>
-				<button class="delete"></button>
+				<button class="edit">Editar</button>
+				<button class="delete">Eliminar</button>
 			</td>
 		</tr>
 	</template>
