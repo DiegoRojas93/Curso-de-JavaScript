@@ -1,43 +1,37 @@
 //-----------------------------DWEB API´s-------------------------
 
-const $cards = document.querySelector('.cards')
-const $newCard = document.createElement('figure')
 
-$newCard.classList.add('card')
+// DOM: manejadores de eventos
 
-// $newCard.innerHTML = `
-// 	<img src="https://placeimg.com/200/200/any" alt="Any" />
-// 	<figcaption>Any</figcaption>
-// `;
+// Evento con atributo HTML
 
+function holaMundo() {    // Event Handler
+	alert('Hola Mundo!');
+	console.log(event);
+	console.log(`Tipo de evento`, event.type);
+	console.log(`Elemento que origino el evento`, event.target);
+}
 
+// Evento Semantico
+const $eventoSemantico = document.getElementById('evento-semantico');
+$eventoSemantico.onclick = holaMundo;
 
-// Modificando Elementos (nuevo estilo)
+// no podemos aginar mas de una funcion a un mismo evento
 
-    // $cards.insertAdjacentElement('beforebegin',$newCard)    // insertame el elemento antes del cards
-
-    // $cards.insertAdjacentElement('afterbegin',$newCard)  // insertame el elemento como primer hijo de cards
-
-    // $cards.insertAdjacentElement('beforeend',$newCard)   // insetame el elemento como el ultimo hijo de cards
-
-    // $cards.insertAdjacentElement('afterend',$newCard)    // insetame el elemento despues de cards
-
-
-    let $contendCard = `
-        <img src="https://placeimg.com/200/200/any" alt="Any" />
-        <figcaption></figcaption>
-    `;
-
-    $newCard.insertAdjacentHTML('beforeend', $contendCard)
-
-    $newCard.querySelector('figcaption').insertAdjacentText('afterbegin', 'Any')
-
-    // $cards.insertAdjacentElement('afterbegin', $newCard)
+$eventoSemantico.onclick = function (e) {
+	console.log(`Hola mundo manegador de eventos semántico`);
+	console.log(e);
+	console.log(event);
+};
 
 
-// Insertando el elementos con médodos usados en JQUERY
+// manejador multiples: addEventListener permite definir diferentes funciones a un mismo elemento
 
-    $cards.prepend($newCard)
-    // $cards.append($newCard)
-    // $cards.after($newCard)
-    // $cards.before($newCard)
+const $eventoMultiple = document.querySelector('#evento-multiple')
+
+$eventoMultiple.addEventListener('click', holaMundo)
+$eventoMultiple.addEventListener('click', (e)=>{
+	console.log(e);
+	console.log(e.type);
+	console.log(e.target);
+})
