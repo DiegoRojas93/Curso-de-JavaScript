@@ -1,0 +1,42 @@
+((d, w, c) => {
+	const xhr = new XMLHttpRequest,
+				$xhr = d.getElementById('xhr'),
+				$fragment = d.createDocumentFragment();
+
+
+
+	xhr.addEventListener('readystatechange', e =>{
+
+		if (xhr.readyState !== 4) return
+
+		if (xhr.status >= 200 && xhr.status < 300 ) {
+
+			const json = JSON.parse(xhr.responseText)
+
+			json.forEach(el => {
+				const $li = d.createElement('li')
+
+				$li.innerHTML = `${el.name} --- ${el.email} --- ${el.phone}`
+
+				$fragment.appendChild($li)
+			})
+
+
+			$xhr.appendChild($fragment)
+
+		} else {
+
+			let message = xhr.statusText || 'Ocurrio un Error';
+
+			$xhr.innerHTML = `Error ${xhr.status}: ${message}`;
+
+		}
+	})
+
+
+
+	xhr.open('GET', 'https://jsonplaceholder.typicode.com/user')
+
+	xhr.send()
+
+})(document, window, console);
