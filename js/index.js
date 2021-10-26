@@ -15,6 +15,7 @@ import geolocation from "./modules/geolocalizacion.js";
 import getGeolocation from "./modules/geolocalizacion.js";
 import searchFilters from "./modules/filtro_busquedas.js";
 import draw from "./modules/sorteo.js";
+import slider from "./modules/carrusel.js";
 
 const d = document;
 
@@ -47,6 +48,7 @@ d.addEventListener('DOMContentLoaded', e => {
 
 		searchFilters('.card-filter', '.card')
 		draw('#winner-btn','.player p')
+		slider()
 	})
 
 d.addEventListener('keydown', e =>{
