@@ -10,6 +10,31 @@
 			--Color-Yellow: #F7DF1E;
 			--Color-Dark: #222;
 		}
+
+		.card {
+			display: inline-block;
+			background-color: var(--Color-Dark);
+			color: var(--Color-Yellow);
+		}
+
+		.card figcaption{
+			padding: 1rem
+		}
+
+		.rotate-45{
+			transform: rotate(45deg);
+		}
+
+		.rotate-135{
+			transform: rotate(135deg);
+		}
+		.opacity-80{
+			opacity: 0.8;
+		}
+
+		.sepia{
+			filter: sepia(1)
+		}
 	</style>
 	<title>Fundamentos JavaScript</title>
 </head>
@@ -65,7 +90,8 @@
 			<img src="https://placeimg.com/200/200/tech" alt="Tech" />
 			<figcaption>Tech</figcaption>
 		</figure>
-		<figure class="card">
+
+		<figure class="card card-2">
 			<img src="https://placeimg.com/200/200/animals" alt="Animals" />
 			<figcaption>Animals</figcaption>
 		</figure>

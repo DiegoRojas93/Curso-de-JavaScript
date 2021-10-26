@@ -1,60 +1,62 @@
 //-----------------------------DWEB API´s-------------------------
 
-// DOM: Estilos y Custom Properties
+// DOM: Clases CSS
 
-const	$html = document.documentElement
-			$body = document.body
-			$linkDOM = document.querySelector('.link-dom');
+const $card = document.querySelectorAll('.card');
 
-// Estilos
+// Conociendo los nombres de las clases
 
-	// obteniendo los estilos
+	console.log($card[0].className); // trae el en una cadena de texto el valor del atributo class del elemento
 
-	console.log(window.getComputedStyle($linkDOM));	// Mapea toda las propiedades con y sin customizar
-	console.log(getComputedStyle($linkDOM).getPropertyValue('color'));	// obtiene el valor de una propiedad en el estilo del un elemento
-
-	console.log($linkDOM.style.color);						// obteniendo un estilo en particular
-	console.log($linkDOM.style);									// Todos los estilos que es tan customizados
-	console.log($linkDOM.style.backgroundColor);	// obteniendo un estilo en particular
+	console.log($card[1].className);
 
 
-	// Estableciendo valores
-	console.log(getComputedStyle($linkDOM).getPropertyValue('text-decoration'));
-
-	$linkDOM.style.setProperty("text-decoration", "none")		// estableciendo la propiedad text-decoration
-
-	console.log(getComputedStyle($linkDOM).getPropertyValue('text-decoration'));
+	console.log($card[0].classList); // trae el objeto DOMtokenList, el cual es una lista que muestra el nombre y el valor del tributo class
+	console.log($card[1].classList); // trae el objeto DOMtokenList, el cual es una lista que muestra el nombre y el valor del tributo class
 
 
 
-	console.log($linkDOM.style.display);
+// evaluar si un elemento contiene una clase en particular
 
-	$linkDOM.style.display = 'block'			// estableciendo la propiedad display
-
-	console.log($linkDOM.style.display);
-
-	$linkDOM.style.width = '50%'
-	$linkDOM.style.textAlign = 'center'
-	$linkDOM.style.marginLeft = 'auto'
-	$linkDOM.style.marginRight = 'auto'
-	$linkDOM.style.padding = '1rem'
-	$linkDOM.style.borderRadius = '1.5rem'
+	console.log($card[1].classList.contains('card'));
+	console.log($card[1].classList.contains('card-2'));
+	console.log($card[1].classList.contains('card card-2'));
 
 
-	// Custom Properties
 
-		// obteniendo los estilos
+// Anadiendo el nombre de una clase
 
-		let Color1 = getComputedStyle($html).getPropertyValue("--Color-Dark")
-				Color2 = getComputedStyle($html).getPropertyValue('--Color-Yellow')
+	console.log($card[0].classList.contains('rotate-45'));
 
-		console.log(Color1, Color2);
+	$card[0].classList.add('rotate-45')
 
-		$body.style.backgroundColor = Color1
-		$body.style.color = Color2
+	console.log($card[0].classList.contains('rotate-45'))
 
-		// modificando los estilos
 
-		$html.style.setProperty('--Color-Dark', '#000')
 
-		$body.style.setProperty('background-color', varDarkColor)
+// Anadiendo el nombre de una clase
+
+	$card[0].classList.remove('rotate-45')
+
+	console.log($card[0].classList.contains('rotate-45'))
+
+
+
+// usando el método .toogle()
+
+	$card[1].classList.toggle('rotate-45')	// ejecuta el método .add()
+	console.log($card[1].classList.contains('rotate-45'));
+
+	$card[1].classList.toggle('rotate-45')	// ejecuta el método .remove()
+	console.log($card[1].classList.contains('rotate-45'));
+
+
+
+// remplazando el nombre de una clase
+
+	$card[1].classList.add('rotate-45')
+
+	setTimeout(() => {
+		$card[1].classList.replace('rotate-45', 'rotate-135')
+	}, 10000);
+
