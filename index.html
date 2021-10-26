@@ -109,10 +109,15 @@
 			<img src="https://placeimg.com/200/200/arch" alt="Arch" />
 			<figcaption>Arch</figcaption>
 		</figure>
-		<!-- <figure class="card">
-			<img src="https://placeimg.com/200/200/nature" alt="Nature" />
-			<figcaption>Nature</figcaption>
-		</figure> -->
+
+		<!-- La etiqueta template mantiene el contenido HTML al	lado del cliente pero que no se renderizara cuando cargue	la página-->
+
+		<template id="template-card">
+			<figure class="card">
+				<img/>
+				<figcaption></figcaption>
+			</figure>
+		</template>
 	</section>
 
 	<script src="./js/index.js" ></script>
