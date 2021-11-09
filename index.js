@@ -1,86 +1,77 @@
-const d = document,
-      $main = d.querySelector("main"),
-      $dropZone = d.querySelector(".drop-zone")
-      // $files = d.getElementById("files");
+const d = document;
+
+function contactForm() {
+  const $form = d.querySelector('.contact-form'),
+        $input = d.querySelectorAll('.contact-form [required]')
+
+  $input.forEach(input => {
+    const $span = d.createElement('span');
+
+    $span.id = input.name;
+    $span.textContent = input.title;
+    $span.classList.add('contact-form-error', 'none')
+
+    input.insertAdjacentElement('afterend', $span)
+  });
 
 
-const uploader = (file) => {
+  d.addEventListener('keyup', e =>{
 
+    if (e.target.matches('.contact-form [required]')){
+      let $input = e.target,
+          pattern = $input.pattern || $input.dataset.pattern;
 
-  const xhr = new XMLHttpRequest(),
-        formData = new FormData();
+      if(pattern && $input.value !== ''){
+        let regex = new RegExp(pattern);
 
-  formData.append("file", file);
+        // console.log($input.value);
+        return !regex.exec($input.value)
+          ? d.getElementById($input.name).classList.add('is-active')
+          : d.getElementById($input.name).classList.remove('is-active')
+      }
 
-  xhr.addEventListener("readystatechange", e => {
-    if (xhr.readyState !== 4) return;
-
-    if (xhr.status >= 200 && xhr.status < 300) {
-      let json = JSON.parse(xhr.responseText)
-      console.log(json);
-
-    } else {
-      let message = xhr.statusText || 'Ocurrió un error';
-      console.log(`Error ${xhr.status}: ${message}`);
+      if(!pattern){
+        return $input.value === ''
+          ? d.getElementById($input.name).classList.add('is-active')
+          : d.getElementById($input.name).classList.remove('is-active')
+      }
     }
   })
 
-  xhr.open("POST", "assets/uploader.php");
 
-  xhr.setRequestHeader("enc-type", "multipart/form-data");
+  d.addEventListener('submit', e => {
+    e.preventDefault();
 
-  xhr.send(formData)
-}
+    const $loader = d.querySelector('.contact-form-loader'),
+          $response = d.querySelector('.contact-form-response');
 
-const progressUpload = (file) => {
-  const $progress = d.createElement('progress'),
-        $span = d.createElement('span');
+    $loader.classList.remove('none');
 
-  $progress.value = 0;
-  $progress.max = 100;
+    fetch("https://formsubmit.co/ajax/diegorojas431@gmail.com", {
+      method: "POST",
+      body: new FormData(e.target)
+    })
+      .then(res => res.ok ? res.json():Promise.reject(res))
+      .then(json => {
+        console.log(json);
 
-  $main.insertAdjacentElement('beforeend', $progress)
-  $main.insertAdjacentElement('beforeend', $span)
+        $response.classList.remove('none');
+        $response.innerHTML = `<p>${json.message}</p>`
+        $loader.classList.add('none');
+        $form.reset();
+      })
+      .catch(err => {
+        console.log(err);
 
-  const fileReader = new FileReader();
-  fileReader.readAsDataURL(file);
+        let message = err.statusText || "Ocurrio un error al enviar, intenta nuevamente"
 
-  fileReader.addEventListener('progress', e => {
-
-    let progress = parseInt((e.loaded * 100) / e.total);
-    $progress.value = progress;
-    $span.innerHTML = `<b>${file.name} - ${progress}%</b>`
-  })
-
-  fileReader.addEventListener('loadend', e => {
-
-    uploader(file);
-
-    setTimeout(() => {
-      $main.removeChild($progress)
-      $main.removeChild($span)
-    }, 3000 )
+        $response.innerHTML = `Error ${err.status}: ${message}`
+      })
+      .finally(() => setTimeout(() => {
+        $response.classList.add('none');
+        $response.innerHTML = '';
+      }, 3000))
   })
 }
 
-$dropZone.addEventListener("dragover", e => {
-  e.preventDefault();
-  e.stopPropagation();
-  e.target.classList.add('is-active');
-})
-
-$dropZone.addEventListener("dragleave", e => {
-  e.preventDefault();
-  e.stopPropagation();
-  e.target.classList.remove('is-active');
-})
-
-$dropZone.addEventListener("drop", e => {
-  console.log('drop: ', e);
-  e.preventDefault();
-  e.stopPropagation();
-  e.target.classList.remove('is-active');
-
-  const files = Array.from(e.dataTransfer.files)
-  files.forEach(el => progressUpload(el));
-})
+d.addEventListener('DOMContentLoaded', contactForm)
